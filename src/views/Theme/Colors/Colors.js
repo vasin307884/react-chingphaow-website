@@ -72,10 +72,10 @@ class Colors extends Component {
           <div className="card-body">
             <Row>
               <ThemeColor className="bg-primary">
-                <h6>Brand Primary Color</h6>
+                <h6>Brand Primary Color1</h6>
               </ThemeColor>
               <ThemeColor className="bg-secondary">
-                <h6>Brand Secondary Color</h6>
+                <h6>Brand Secondary Color2</h6>
               </ThemeColor>
               <ThemeColor className="bg-success">
                 <h6>Brand Success Color</h6>
