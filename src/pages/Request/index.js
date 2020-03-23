@@ -38,8 +38,8 @@ export default class Request extends Component {
           <th>ลองจิจูด</th>
           <th>วันที่ส่งมา</th>
           <th>วันที่เริ่ม</th>
-          <th>สถานะ</th>
           <th>อัพเดทล่าสุดเมื่อ</th>
+          <th>สถานะ</th>
         </tr>
       </thead>
       {this.state.requestsdata.map(requestsdata=>(
@@ -53,8 +53,9 @@ export default class Request extends Component {
           <td>{requestsdata.longitude}</td>
           <td>{requestsdata.fromdate}</td>
           <td>{requestsdata.todate}</td>
-          <td>{requestsdata.statusValue}</td>
           <td>{requestsdata.lastupdate}</td>
+          <td style={{color:requestsdata.color}}>{requestsdata.statusValue}</td>
+
         </tr>
       </tbody>
       ))}
