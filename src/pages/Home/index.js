@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import data from '../data/data.json';
 export class Home extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
+    this.state = {     
       isLoading: true,
       markers: [],
       page: 1,
       seed: 1,
       refreshing: false,
-      filterCrime: '',
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
@@ -21,6 +20,7 @@ export class Home extends Component {
         longitudeDelta: 0.0421
       }
     };
+    this.updateFilter = this.updateFilter.bind(this);
   }
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -52,11 +52,24 @@ export class Home extends Component {
       });
   }
   componentDidMount() {
-
     this.fetchMarkerData();
   }
+  updateFilter = (event) => {
+    this.setState({ value: event.target.value })
+ }
   render() {
     return (
+      <label>
+        สถานะ :
+      <select 
+      onSelect={this.state.value} 
+      onChange={this.updateFilter}>
+        <option value={this.state.statusValue} label="ทั้งหมด"></option>
+        <option value="กำลังรอเจ้าหน้าที่ตรวจสอบ" label="กำลังรอเจ้าหน้าที่ตรวจสอบ"></option>
+        <option value="กำลังดำเนินการชิงเผา" label="กำลังดำเนินการชิงเผา"></option>
+        <option value="ชิงเผาเสร็จเรียบร้อยแล้ว" label="ชิงเผาเสร็จเรียบร้อยแล้ว"></option>
+      </select>
+      
       <Map
         google={this.props.google}
         zoom={12}
@@ -65,6 +78,7 @@ export class Home extends Component {
         showsUserLocation={true}
       >
         {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+          if ( !this.state.value || marker.statusValue === this.state.value ) {
           return (
             <Marker
               onClick={this.onMarkerClick}
@@ -90,7 +104,7 @@ export class Home extends Component {
             </Marker>
 
           );
-        })}
+        }})}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -104,8 +118,19 @@ export class Home extends Component {
             <h2 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h2>
           </div>
         </InfoWindow>
+        {/* {data.map((marker, index) => {
+          const date = `วันที่ : ${marker.acq_date}`;
+          return (
+            <Marker
+              key={index}
+              position={{ lat: marker.latitude, lng: marker.longitude }}
+              title={date}
+            >
+            </Marker>
+          );
+        })} */}
       </Map>
-
+      </label>
     );
   }
 }

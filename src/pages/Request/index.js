@@ -7,6 +7,7 @@ export default class Request extends Component {
       loading: false,
       error: null,
     }
+    this.updateFilter = this.updateFilter.bind(this);
   }
   fetchRequestData() {
     fetch('https://chingphaow-application.herokuapp.com/requests/')
@@ -25,8 +26,21 @@ export default class Request extends Component {
   componentDidMount(){
     this.fetchRequestData();
   }
+  updateFilter = (event) => {
+    this.setState({ value: event.target.value })
+ }
   render() {
     return (
+      <label>
+        สถานะ :
+      <select 
+      onSelect={this.state.value} 
+      onChange={this.updateFilter}>
+        <option value={this.state.statusValue} label="ทั้งหมด"></option>
+        <option value="กำลังรอเจ้าหน้าที่ตรวจสอบ" label="กำลังรอเจ้าหน้าที่ตรวจสอบ"></option>
+        <option value="กำลังดำเนินการชิงเผา" label="กำลังดำเนินการชิงเผา"></option>
+        <option value="ชิงเผาเสร็จเรียบร้อยแล้ว" label="ชิงเผาเสร็จเรียบร้อยแล้ว"></option>
+      </select>
       <table>
       <thead>
         <tr>
@@ -41,9 +55,11 @@ export default class Request extends Component {
           <th>อัพเดทล่าสุดเมื่อ</th>
           <th>สถานะ</th>
         </tr>
-      </thead>
-      {this.state.requestsdata.map(requestsdata=>(
-      <tbody>
+      </thead>     
+      {this.state.requestsdata.map((requestsdata)=>{
+        if ( !this.state.value || requestsdata.statusValue === this.state.value ) {
+        return(          
+      <tbody>       
         <tr>
           <td>{requestsdata.id}</td>
           <td>{requestsdata.name}</td>
@@ -55,12 +71,12 @@ export default class Request extends Component {
           <td>{requestsdata.todate}</td>
           <td>{requestsdata.lastupdate}</td>
           <td style={{color:requestsdata.color}}>{requestsdata.statusValue}</td>
-
         </tr>
       </tbody>
-      ))}
+        );
+    }})}
     </table>
-
+  </label>  
     );
   }
 }
