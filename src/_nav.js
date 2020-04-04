@@ -267,6 +267,11 @@ export default {
           url: '/500',
           icon: 'icon-star',
         },
+        {
+          name: 'land',
+          url: '/landingpage',
+          icon: 'icon-star',
+        },
       ],
     },
     {
