@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import data from '../data/data.json';
+// import data from '../data/data.json';
 export class Home extends Component {
   constructor(props) {
     super(props);

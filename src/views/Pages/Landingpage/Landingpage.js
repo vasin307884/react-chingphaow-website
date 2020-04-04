@@ -116,8 +116,8 @@ class Landingpage extends Component {
         >
           <div>
             <h2>ชื่อผู้ส่ง : {this.state.selectedPlace.name}</h2>
-            <h2>เบอร์โทร : {this.state.selectedPlace.phone}</h2>
-            <h2>ที่อยู่ : {this.state.selectedPlace.address}</h2>
+            {/* <h2>เบอร์โทร : {this.state.selectedPlace.phone}</h2> */}
+            {/* <h2>ที่อยู่ : {this.state.selectedPlace.address}</h2> */}
             <h2>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h2>
             <h2 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h2>
           </div>
