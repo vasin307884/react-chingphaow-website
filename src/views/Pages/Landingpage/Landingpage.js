@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import './App.css';
 class Landingpage extends Component {
