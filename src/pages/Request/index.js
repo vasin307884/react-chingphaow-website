@@ -32,6 +32,17 @@ export default class Request extends Component {
   render() {
     return (
       <div className="animated fadeIn">
+              <label>
+        สถานะ :
+      <select 
+      onSelect={this.state.value} 
+      onChange={this.updateFilter}>
+        <option value={this.state.statusValue} label="ทั้งหมด"></option>
+        <option value="กำลังรอเจ้าหน้าที่ตรวจสอบ" label="กำลังรอเจ้าหน้าที่ตรวจสอบ"></option>
+        <option value="กำลังดำเนินการชิงเผา" label="กำลังดำเนินการชิงเผา"></option>
+        <option value="ชิงเผาเสร็จเรียบร้อยแล้ว" label="ชิงเผาเสร็จเรียบร้อยแล้ว"></option>
+      </select>
+      </label>
         <Card>
               <CardHeader>
                 <i className="fa fa-align-justify"></i> ตารางคำขอ
@@ -52,7 +63,9 @@ export default class Request extends Component {
               <th>สถานะ</th>
             </tr>
           </thead>
-          {this.state.requestsdata.map(requestsdata => (
+          {this.state.requestsdata.map((requestsdata) => {
+          if ( !this.state.value || requestsdata.statusValue === this.state.value ) {
+          return (
             <tbody>
               <tr>
                 <td>{requestsdata.id}</td>
@@ -69,7 +82,8 @@ export default class Request extends Component {
                 </Badge>
               </tr>
             </tbody>
-          ))}
+          )
+          }})}
         </Table>
         </CardBody>
             </Card>
