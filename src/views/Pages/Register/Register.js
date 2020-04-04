@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-
+import { Link } from 'react-router-dom';
 class Register extends Component {
   render() {
     return (
@@ -21,12 +21,12 @@ class Register extends Component {
                       </InputGroupAddon>
                       <Input type="text" placeholder="Username" autoComplete="username" />
                     </InputGroup>
-                    <InputGroup className="mb-3">
+                    {/* <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
                       <Input type="text" placeholder="Email" autoComplete="email" />
-                    </InputGroup>
+                    </InputGroup> */}
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -43,10 +43,12 @@ class Register extends Component {
                       </InputGroupAddon>
                       <Input type="password" placeholder="Repeat password" autoComplete="new-password" />
                     </InputGroup>
+                    <Link to="/login">
                     <Button color="success" block>Create Account</Button>
+                    </Link>
                   </Form>
                 </CardBody>
-                <CardFooter className="p-4">
+                {/* <CardFooter className="p-4">
                   <Row>
                     <Col xs="12" sm="6">
                       <Button className="btn-facebook mb-1" block><span>facebook</span></Button>
@@ -55,7 +57,7 @@ class Register extends Component {
                       <Button className="btn-twitter mb-1" block><span>twitter</span></Button>
                     </Col>
                   </Row>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             </Col>
           </Row>

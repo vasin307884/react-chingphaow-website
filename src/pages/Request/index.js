@@ -26,6 +26,9 @@ export default class Request extends Component {
   componentDidMount() {
     this.fetchRequestData();
   }
+  updateFilter = (event) => {
+    this.setState({ value: event.target.value })
+ }
   render() {
     return (
       <div className="animated fadeIn">
