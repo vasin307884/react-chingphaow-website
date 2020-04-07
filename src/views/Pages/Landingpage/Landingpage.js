@@ -133,7 +133,7 @@ class Landingpage extends Component {
      </header> */}
      <div class="w3-row-padding w3-padding-64 w3-container">
   <div class="w3-content">
-    <div class="w3-twothird">
+    <div class="w3-twothird" id="about">
       <h1>ชิงเผาคืออะไร</h1>
       <h5 class="w3-padding-32">การชิงเผาเป็นวิธีการหนึ่งของการเผาตามกำหนด (Prescribe Burning)
             อันเป็นการใช้ประโยชน์จากไฟเพื่อการจัดการป่าไม้
