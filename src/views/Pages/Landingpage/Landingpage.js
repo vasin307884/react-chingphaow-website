@@ -1,8 +1,11 @@
+
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import './App.css';
 class Landingpage extends Component {
+  
     constructor(props) {
         super(props);
     
@@ -23,7 +26,11 @@ class Landingpage extends Component {
             longitudeDelta: 0.0421
           }
         };
+       
+       
       }
+    
+    
       onMarkerClick = (props, marker, e) =>
         this.setState({
           selectedPlace: props,
@@ -59,9 +66,25 @@ class Landingpage extends Component {
       }
       
   render() {
+    
+    var mySidebar = document.getElementById("mySidebar");
+    function w3_open() {
+      
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
+    function w3_close() {
+  
+      mySidebar.style.display = "none";
+  }
+
     return (
       <div >
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
+        <div class="w3-top">
+  <div class="w3-bar w3-black w3-card" id="myNavbar">
     <a href="#/Landingpage" class="w3-bar-item w3-button w3-wide">LOGO</a>
     
     <div class="w3-right w3-hide-small">
@@ -71,7 +94,21 @@ class Landingpage extends Component {
       <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
       <Link to="/login"><a href="#contact" class="w3-bar-item w3-button"> LOGIN</a></Link>
     </div>
+    <button  class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick={w3_open} >
+      <i class="fa fa-bars"></i>
+    </button>
     </div>
+    </div>
+    <div class="mySidebar">
+    <nav class="mySidebar w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"  id="mySidebar" display="none">
+  <button  onclick={w3_close} class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</button>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+</div>
     
       <div className="app flex-row align-items-center" id="homepage">
           
@@ -114,13 +151,13 @@ class Landingpage extends Component {
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
         >
-          <div>
-            <h2>ชื่อผู้ส่ง : {this.state.selectedPlace.name}</h2>
+          <div class="infoWindow">
+            <h3>ชื่อผู้ส่ง : {this.state.selectedPlace.name}</h3>
             {/* <h2>เบอร์โทร : {this.state.selectedPlace.phone}</h2> */}
             {/* <h2>ที่อยู่ : {this.state.selectedPlace.address}</h2> */}
-            <h2>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h2>
-            <h2 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h2>
-          </div>
+            <h5>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h5>
+           <h5 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h5>   
+          </div>         
         </InfoWindow>
       </Map>
 
@@ -157,14 +194,14 @@ class Landingpage extends Component {
     </div>
 
     <div class="w3-third w3-center">
-    <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/b4c6d636c3bc69243b82e933579fdfb8.png" alt="chingphaow" border="0" />
+    <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/5847209ee62fd1befd634f6c3e342203.png" alt="5847209ee62fd1befd634f6c3e342203.png" border="0" />
     </div>
   </div>
 </div>
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
-    <div class="w3-third w3-center">
-      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+    <div class="w3-third w3-center ">
+    <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/76adb8a868e121a1baa3d791116d8288.png" alt="76adb8a868e121a1baa3d791116d8288.png" border="0" />
     </div>
 
     <div class="w3-twothird">
@@ -190,14 +227,16 @@ class Landingpage extends Component {
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
     <h1 class="w3-margin w3-xlarge">Chingphaow will save Thailand</h1>
 </div>
-<div class="w3-container w3-light-grey"  id="contact">
+
+<div class="container">
+<div class=" w3-container "  id="contact">
   <br></br><br></br><br></br><br></br>
-<h3 class="w3-center">CONTACT</h3>
+<h3 class="contact w3-center w3-margin">CONTACT</h3>
   <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
   <div>
-  <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Ching rai, Thailand</p>
-    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 0812345</p>
-    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+  <p><i class="mm fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Ching rai, Thailand</p>
+    <p><i class="ph fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 0812345</p>
+    <p><i class="em fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
     <br></br>
     <form>
     <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></input></p>
@@ -205,15 +244,16 @@ class Landingpage extends Component {
     <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></input></p>
     <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></input></p>
     <p>
-        <button class="w3-button w3-black" type="submit">
+        <button class="buttonsubmit w3-button " type="submit">
           <i class="fa fa-paper-plane"></i> SEND MESSAGE
         </button>
       </p>
     </form>
   </div>
-
+  </div>
 </div>
-<footer class="w3-center w3-black w3-padding-64">
+<br></br><br></br>
+<footer class="footer w3-center w3-padding-64">
   <a href="#homepage" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <div class="w3-xlarge w3-section">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>

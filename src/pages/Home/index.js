@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+
 // import data from '../data/data.json';
 export class Home extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ export class Home extends Component {
  }
   render() {
     return (
+      <div className="animated fadeIn">
       <label>
         สถานะ :
       <select 
@@ -70,7 +72,7 @@ export class Home extends Component {
         <option value="กำลังดำเนินการชิงเผา" label="กำลังดำเนินการชิงเผา"></option>
         <option value="ชิงเผาเสร็จเรียบร้อยแล้ว" label="ชิงเผาเสร็จเรียบร้อยแล้ว"></option>
       </select>
-      
+      </label>
       <Map
         google={this.props.google}
         zoom={12}
@@ -78,6 +80,7 @@ export class Home extends Component {
         initialCenter={{ lat: 20.050470250943587, lng: 99.87799879855217 }}
         showsUserLocation={true}
       >
+       
         {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
           if ( !this.state.value || marker.statusValue === this.state.value ) {
           return (
@@ -131,13 +134,15 @@ export class Home extends Component {
           );
         })} */}
       </Map>
-      </label>
+      
+      </div>
+      
     );
   }
 }
 const mapStyles = {
   width: '100%',
-  height: '85%',
+  height: '100%',
 };
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyAyir1wNaHCINAHUmm_4e-8hpICN3Q6z2U'
