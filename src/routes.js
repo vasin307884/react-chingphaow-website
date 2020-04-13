@@ -38,10 +38,12 @@ const User = React.lazy(() => import('./views/Users/User'));
 const Home = React.lazy(() => import('./pages/Home'));
 const Request = React.lazy(() => import('./pages/Request'));
 const Landingpage = React.lazy(() => import('./views/Pages/Landingpage'));
+const Profile = React.lazy(() => import('./pages/Profile'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Landingpage',component:Landingpage },
   { path: '/home', exact: true, name: 'Home',component:Home },
+  { path: '/profile', exact: true, name: 'Profile',component:Profile },
   { path: '/request', exact: true, name: 'Request',component:Request },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

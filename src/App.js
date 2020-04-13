@@ -15,6 +15,7 @@ const Register = React.lazy(() => import('./views/Pages/Register'));
 const Page404 = React.lazy(() => import('./views/Pages/Page404'));
 const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 const Landingpage = React.lazy(() => import('./views/Pages/Landingpage'));
+
 class App extends Component {
 
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path="/request" name="Request" render={props => <DefaultLayout {...props} />} />
             <Route exact path="/dashboard" name="Dashboard" render={props => <DefaultLayout {...props} />} />
             <Route exact path="/home" name="Home" render={props => <DefaultLayout {...props} />} />
+            <Route exact path="/profile" name="Profile" render={props => <DefaultLayout {...props} />} />
             <Route path="/" name="Landingpage" render={props => <Landingpage {...props} />} />
           </Switch>
         </React.Suspense>
