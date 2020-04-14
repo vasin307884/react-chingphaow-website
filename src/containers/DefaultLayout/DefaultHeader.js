@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link,withRouter } from 'react-router-dom';
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
 import PropTypes from 'prop-types';
-
+import jwt_decode from 'jwt-decode'
 import { AppAsideToggler, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
@@ -14,8 +14,56 @@ const propTypes = {
 const defaultProps = {};
 
 class DefaultHeader extends Component {
-  render() {
+  constructor() {
+    super()
+    this.state = {
+      first_name: '',
+      last_name: '',
+      email: '',
+      errors: {}
+    }
+  }
 
+  componentDidMount() {
+    const token = localStorage.usertoken
+    const decoded = jwt_decode(token)
+    this.setState({
+      first_name: decoded.first_name,
+      last_name: decoded.last_name,
+      email: decoded.email
+    })
+  }
+  logOut(e) {
+    e.preventDefault()
+    localStorage.removeItem('usertoken')
+    this.props.history.push(`/`)
+    alert("ออกจากระบบ!");
+  }
+  render() {
+    const loginRegLink = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/register" className="nav-link">
+            Register
+          </Link>
+        </li>
+      </ul>
+    )
+
+    const userLink = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+            Logout
+          </a>
+        </li>
+      </ul>
+    )
     // eslint-disable-next-line
     const { children, ...attributes } = this.props;
 
@@ -32,6 +80,9 @@ class DefaultHeader extends Component {
         <NavItem className="px-3">
             <NavLink to="/home" className="nav-link" >Home</NavLink>
           </NavItem>
+          <NavItem className="px-3">
+            <NavLink to="/profile" className="nav-link" >My Profile</NavLink>
+          </NavItem>
         <NavItem className="px-3">
             <NavLink to="/request" className="nav-link" >Request</NavLink>
           </NavItem>
@@ -39,8 +90,9 @@ class DefaultHeader extends Component {
             <NavLink to="/dashboard" className="nav-link" >Dashboard</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <NavLink to="/login" className="nav-link" >Login</NavLink>
+            <NavLink to="/register" className="nav-link" >Staff registration</NavLink>
           </NavItem>
+          {localStorage.usertoken ? userLink : loginRegLink}
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
@@ -55,7 +107,7 @@ class DefaultHeader extends Component {
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle nav>
               <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-              Admin
+              {this.state.first_name}
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
@@ -70,7 +122,7 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
               <DropdownItem divider />
               <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
-              <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
+              <DropdownItem onClick={this.logOut.bind(this)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
@@ -84,4 +136,4 @@ class DefaultHeader extends Component {
 DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
 
-export default DefaultHeader;
+export default withRouter(DefaultHeader);
