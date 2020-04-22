@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { register } from '../components/UserFunctions'
-
+import jwt_decode from 'jwt-decode'
 class Register extends Component {
   constructor() {
     super()
     this.state = {
+      id:'',
       first_name: '',
       last_name: '',
       email: '',
@@ -34,7 +35,13 @@ class Register extends Component {
       alert("สมัครเรียบร้อย!");
     })
   }
-
+  componentDidMount() {
+    const token = localStorage.usertoken
+    const decoded = jwt_decode(token)
+    this.setState({
+      staff_id:decoded.staff_id
+    })
+  }
   render() {
     return (
       <div className="container">

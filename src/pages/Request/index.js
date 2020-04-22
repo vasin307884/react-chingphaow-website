@@ -61,6 +61,7 @@ export default class Request extends Component {
               <th>วันที่เริ่ม</th>
               <th>อัพเดทล่าสุดเมื่อ</th>
               <th>สถานะ</th>
+              <th>เจ้าหน้าที่ที่ดูแล</th>
             </tr>
           </thead>
           {this.state.requestsdata.map((requestsdata) => {
@@ -80,6 +81,7 @@ export default class Request extends Component {
                 <Badge style={{ color: requestsdata.color }}>
                   {requestsdata.statusValue}
                 </Badge>
+                <td>{requestsdata.first_name} {requestsdata.last_name}</td>
               </tr>
             </tbody>
           )
