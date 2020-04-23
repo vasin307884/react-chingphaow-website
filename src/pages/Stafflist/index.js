@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Table, Card, CardHeader, CardBody, Badge } from "reactstrap";
+import { Table, Card, CardHeader, CardBody, Badge } from "reactstrap";
 export default class Stafflist extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ export default class Stafflist extends Component {
   render() {
     return (
       <div className="animated fadeIn">
-        <label>
+        {/* <label>
           รายชื่อสตาฟ :
           <select
             onSelect={this.state.value}
@@ -46,7 +46,38 @@ export default class Stafflist extends Component {
             })}
             
           </select>
-        </label>
+        </label> */}
+        <Card>
+              <CardHeader>
+                <i className="fa fa-align-justify"></i> รายชื่อสตาฟ
+              </CardHeader>
+              <CardBody>
+        <Table responsive >
+          <thead>
+            <tr>
+              <th>ไอดี</th>
+              <th>ชื่อจริง</th>
+              <th>นามสกุล</th>
+              <th>เบอร์โทร</th>
+              <th>email</th>
+            </tr>
+          </thead>
+          {this.state.staffdata.map((staff) => {
+          return (
+            <tbody>
+              <tr>
+                <td>{staff.staff_id}</td>
+                <td>{staff.first_name}</td>
+                <td>{staff.last_name}</td>
+                <td>{staff.staff_phone}</td>
+                <td>{staff.email}</td>
+              </tr>
+            </tbody>
+          )
+          })}
+        </Table>
+        </CardBody>
+            </Card>
       </div>
     );
   }

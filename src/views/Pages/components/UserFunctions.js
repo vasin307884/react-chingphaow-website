@@ -5,6 +5,7 @@ export const register = newUser => {
     .post("https://chingphaow-application.herokuapp.com/users/register", {
       first_name: newUser.first_name,
       last_name: newUser.last_name,
+      staff_phone : newUser.staff_phone,
       email: newUser.email,
       password: newUser.password
     })
