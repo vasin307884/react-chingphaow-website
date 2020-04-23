@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Card, CardHeader, CardBody, Badge } from "reactstrap";
+// import { Table, Card, CardHeader, CardBody, Badge } from "reactstrap";
 export default class Stafflist extends Component {
   constructor(props) {
     super(props);
