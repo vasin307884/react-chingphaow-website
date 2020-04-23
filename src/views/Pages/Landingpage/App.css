@@ -29,18 +29,18 @@ body, html {
 
 .footer{
 
-background-color: #2ED197;
+background-color: #009688;
 }
 .buttonsubmit{
-  background-color: #2ED197;
+  background-color: #009688;
 color: aliceblue;
 }
 .mm,.ph,.em{
-  color: #2ED197;
+  color: #009688;
 }
 .contact{
 height: 50px;
-  background-color: #2ED197;
+  background-color: #009688;
   padding: 10px;
   color: aliceblue;
 }
