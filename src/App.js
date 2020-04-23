@@ -31,6 +31,7 @@ class App extends Component {
             <Route exact path="/dashboard" name="Dashboard" render={props => <DefaultLayout {...props} />} />
             <Route exact path="/home" name="Home" render={props => <DefaultLayout {...props} />} />
             <Route exact path="/profile" name="Profile" render={props => <DefaultLayout {...props} />} />
+            <Route exact path="/stafflist" name="Stafflist" render={props => <DefaultLayout {...props} />} />
             <Route path="/" name="Landingpage" render={props => <Landingpage {...props} />} />
           </Switch>
         </React.Suspense>
