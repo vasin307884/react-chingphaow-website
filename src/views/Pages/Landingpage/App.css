@@ -4,7 +4,9 @@ body, html {
   height: 100%;
   line-height: 1.8;
 }
-
+.logo{
+  height: 55px;
+}
 /* Full height image header */
 .bgimg-1 {
   background-position: center;

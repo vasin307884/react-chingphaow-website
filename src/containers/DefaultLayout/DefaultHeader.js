@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { NavLink,Link,withRouter } from 'react-router-dom';
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
@@ -100,7 +101,7 @@ class DefaultHeader extends Component {
           </NavItem>
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle nav>
-              <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+              <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/7dfef7c0af70785f8950a0ebac70bbe3.png" className="img-avatar" alt="admin@bootstrapmaster.com" />
               {this.state.first_name}
             </DropdownToggle>
             <DropdownMenu right>

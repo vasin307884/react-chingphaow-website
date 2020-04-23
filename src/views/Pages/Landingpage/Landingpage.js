@@ -85,7 +85,8 @@ class Landingpage extends Component {
       <div >
         <div class="w3-top">
   <div class="w3-bar w3-black w3-card" id="myNavbar">
-    <a href="#/Landingpage" class="w3-bar-item w3-button w3-wide">LOGO</a>
+    <a href="#/Landingpage" class="w3-bar-item w3-button w3-wide">ชิงเผา</a>
+    {/* <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/5847209ee62fd1befd634f6c3e342203.png"className="logo" alt="5847209ee62fd1befd634f6c3e342203.png" border="0" /> */}
     
     <div class="w3-right w3-hide-small">
       <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
@@ -131,6 +132,8 @@ class Landingpage extends Component {
               phone={marker.phone}
               fromdate={marker.fromdate}
               status={marker.statusValue}
+              staff_first_name={marker.first_name}
+              staff_last_name={marker.last_name}
               icon={{
                 path: "M7.8,1.3L7.8,1.3C6-0.4,3.1-0.4,1.3,1.3c-1.8,1.7-1.8,4.6-0.1,6.3c0,0,0,0,0.1,0.1 l3.2,3.2l3.2-3.2C9.6,6,9.6,3.2,7.8,1.3C7.9,1.4,7.9,1.4,7.8,1.3z M4.6,5.8c-0.7,0-1.3-0.6-1.3-1.4c0-0.7,0.6-1.3,1.4-1.3 c0.7,0,1.3,0.6,1.3,1.3 C5.9,5.3,5.3,5.9,4.6,5.8z",
                 fillColor: marker.color,
@@ -157,6 +160,7 @@ class Landingpage extends Component {
             {/* <h2>ที่อยู่ : {this.state.selectedPlace.address}</h2> */}
             <h5>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h5>
            <h5 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h5>   
+           <h5>เจ้าหน้าที่ที่ดูแลจุด : {this.state.selectedPlace.staff_first_name} {this.state.selectedPlace.staff_last_name}</h5>
           </div>         
         </InfoWindow>
       </Map>
