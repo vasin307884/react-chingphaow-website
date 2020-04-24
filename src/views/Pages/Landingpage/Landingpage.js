@@ -110,7 +110,7 @@ class Landingpage extends Component {
   <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
 </nav>
 </div>
-    
+    <br></br><br></br>
       <div className="app flex-row align-items-center" id="homepage">
           
          <Map
