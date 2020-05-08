@@ -1,10 +1,14 @@
 /* eslint-disable array-callback-return */
 import React, { Component } from "react";
-import { Table,Card ,CardHeader,CardBody,Badge} from "reactstrap";
+import { NavLink} from 'react-router-dom';
+import { Table,Card ,CardHeader,CardBody,Badge,Nav, NavItem,Button} from "reactstrap";
+import jwt_decode from 'jwt-decode'
+import axios from 'axios'
 export default class Request extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: '',
       requestsdata: [],
       loading: false,
       error: null
@@ -26,11 +30,31 @@ export default class Request extends Component {
   }
   componentDidMount() {
     this.fetchRequestData();
+    const token = localStorage.usertoken
+    const decoded = jwt_decode(token)
+    this.setState({
+      email: decoded.email
+    })
   }
   updateFilter = (event) => {
     this.setState({ value: event.target.value })
  }
+ deleteData(id){
+   if(window.confirm('คุณต้องการจะลบออกรายการใช่หรือไม่?'))
+   {
+     fetch('https://chingphaow-application.herokuapp.com/requests/delete/'+id,
+     {
+      method : 'DELETE',
+      header : {'Accept':'application/json',
+      'Content-Type':'application/json'
+    }
+     })
+   }
+ }
   render() {
+    const adminLink = (
+      <Button color='danger' onClick={()=>this.deleteData()}>ลบออกจากลิสต์</Button>
+    )
     return (
       <div className="animated fadeIn">
               <label>
@@ -83,6 +107,7 @@ export default class Request extends Component {
                   {requestsdata.statusValue}
                 </Badge>
                 <td>{requestsdata.first_name} {requestsdata.last_name}</td>
+                {this.state.email==='lnwza' ? adminLink : null}
               </tr>
             </tbody>
           )

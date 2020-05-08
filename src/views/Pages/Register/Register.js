@@ -32,10 +32,11 @@ class Register extends Component {
       password: this.state.password
     }
 
-    register(newUser).then(res => {
+    register(newUser).then(res => { 
       this.props.history.push(`/login`)
-      alert("สมัครเรียบร้อย!");
+      alert("สมัครเรียบร้อย!");      
     })
+    
   }
   componentDidMount() {
     const token = localStorage.usertoken
