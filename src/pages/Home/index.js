@@ -96,6 +96,8 @@ export class Home extends Component {
               status={marker.statusValue}
               staff_first_name={marker.first_name}
               staff_last_name={marker.last_name}
+              latitude={marker.latitude}
+              longitude={marker.longitude}
               icon={{
                 path: "M7.8,1.3L7.8,1.3C6-0.4,3.1-0.4,1.3,1.3c-1.8,1.7-1.8,4.6-0.1,6.3c0,0,0,0,0.1,0.1 l3.2,3.2l3.2-3.2C9.6,6,9.6,3.2,7.8,1.3C7.9,1.4,7.9,1.4,7.8,1.3z M4.6,5.8c-0.7,0-1.3-0.6-1.3-1.4c0-0.7,0.6-1.3,1.4-1.3 c0.7,0,1.3,0.6,1.3,1.3 C5.9,5.3,5.3,5.9,4.6,5.8z",
                 fillColor: marker.color,
@@ -123,6 +125,7 @@ export class Home extends Component {
             <h2>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h2>
             <h2 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h2>
             <h2>เจ้าหน้าที่ที่ดูแลจุด : {this.state.selectedPlace.staff_first_name} {this.state.selectedPlace.staff_last_name}</h2>
+            <a href={`https://www.google.com/maps?ie=UTF8&z=13&q=${this.state.selectedPlace.latitude},${this.state.selectedPlace.longitude}`} target="_blank">กดเพื่อนำทาง</a>
           </div>
         </InfoWindow>
         {/* {data.map((marker, index) => {

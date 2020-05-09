@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Card, CardHeader, CardBody, } from "reactstrap";
+import { Table, Card, CardHeader, CardBody,Button } from "reactstrap";
 export default class Stafflist extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +29,17 @@ export default class Stafflist extends Component {
   updateFilter = (event) => {
     this.setState({ value: event.target.value })
  }
+ delete(staff_id){
+  if(window.confirm('คุณต้องการจะลบออกรายการใช่หรือไม่?')){
+    fetch('https://chingphaow-application.herokuapp.com/requests/delete'+staff_id,{
+     method:'DELETE',
+     headers : {
+     'Accept':'application/json',
+     'Content-Type':'application/json'
+   }
+    })
+  }
+}
   render() {
     return (
       <div className="animated fadeIn">
@@ -71,6 +82,7 @@ export default class Stafflist extends Component {
                 <td>{staff.last_name}</td>
                 <td>{staff.staff_phone}</td>
                 <td>{staff.email}</td>
+                <Button color='danger' onClick={()=>this.delete(staff.staff_id)}>ลบออกจากลิสต์</Button>
               </tr>
             </tbody>
           )

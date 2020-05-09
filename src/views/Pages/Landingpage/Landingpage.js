@@ -95,7 +95,7 @@ class Landingpage extends Component {
       <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
       <Link to="/login"><a href="#contact" class="w3-bar-item w3-button"> LOGIN</a></Link>
     </div>
-    <button  class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick={w3_open} >
+    <button  class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onClick={w3_open} >
       <i class="fa fa-bars"></i>
     </button>
     </div>

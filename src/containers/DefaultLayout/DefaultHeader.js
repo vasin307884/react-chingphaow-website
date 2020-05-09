@@ -41,25 +41,42 @@ class DefaultHeader extends Component {
     alert("ออกจากระบบ!");
   }
   render() {
-    const loginRegLink = (
+    const staffLink = (
       <ul className="navbar-nav">
+        <Nav className="d-md-down-none" navbar>
+        <NavItem className="px-3">
+            <NavLink to="/request" className="nav-link" >Request</NavLink>
+          </NavItem>
+          <NavItem className="px-3">
+            <NavLink to="/dashboard" className="nav-link" >Dashboard</NavLink>
+          </NavItem>
+        </Nav>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            Register
-          </Link>
+          <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
+            Logout
+          </a>
         </li>
       </ul>
     )
 
-    const userLink = (
+    const adminLink = (
       <ul className="navbar-nav">
+        <Nav className="d-md-down-none" navbar>
+        <NavItem className="px-3">
+            <NavLink to="/request" className="nav-link" >Request</NavLink>
+          </NavItem>
+          <NavItem className="px-3">
+            <NavLink to="/stafflist" className="nav-link" >Staff List</NavLink>
+          </NavItem>
+          <NavItem className="px-3">
+            <NavLink to="/dashboard" className="nav-link" >Dashboard</NavLink>
+          </NavItem>
+          <NavItem className="px-3">
+            <NavLink to="/register" className="nav-link" >Staff registration</NavLink>
+          </NavItem>
+        </Nav>
         <li className="nav-item">
-          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+          <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
           </a>
         </li>
@@ -81,19 +98,7 @@ class DefaultHeader extends Component {
         <NavItem className="px-3">
             <NavLink to="/home" className="nav-link" >Home</NavLink>
           </NavItem>
-        <NavItem className="px-3">
-            <NavLink to="/request" className="nav-link" >Request</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink to="/stafflist" className="nav-link" >Staff List</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink to="/dashboard" className="nav-link" >Dashboard</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink to="/register" className="nav-link" >Staff registration</NavLink>
-          </NavItem>
-          {localStorage.usertoken ? userLink : loginRegLink}
+          {this.state.email==='lnwza' ? adminLink : staffLink}
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
@@ -121,7 +126,7 @@ class DefaultHeader extends Component {
           </UncontrolledDropdown>
         </Nav>
         <AppAsideToggler className="d-md-down-none" />
-        {/*<AppAsideToggler className="d-lg-none" mobile />*/}
+        <AppAsideToggler className="d-lg-none" mobile />
       </React.Fragment>
     );
   }
