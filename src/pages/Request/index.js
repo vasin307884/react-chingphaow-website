@@ -87,6 +87,7 @@ export default class Request extends Component {
               <th>อัพเดทล่าสุดเมื่อ</th>
               <th>สถานะ</th>
               <th>เจ้าหน้าที่ที่ดูแล</th>
+              <th>พื้นที่</th>
             </tr>
           </thead>
           {this.state.requestsdata.map((requestsdata) => {
@@ -108,6 +109,7 @@ export default class Request extends Component {
                 </Badge>
                 <td>{requestsdata.first_name} {requestsdata.last_name}</td>
                 {this.state.email==='lnwza' ? adminLink : null}
+                <td>{requestsdata.area} ตร.ม</td>
               </tr>
             </tbody>
           )
