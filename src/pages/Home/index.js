@@ -128,7 +128,7 @@ export class Home extends Component {
             <h2 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h2>
             <h2>เจ้าหน้าที่ที่ดูแลจุด : {this.state.selectedPlace.staff_first_name} {this.state.selectedPlace.staff_last_name}</h2>
             <a href={`https://www.google.com/maps?ie=UTF8&z=13&q=${this.state.selectedPlace.latitude},${this.state.selectedPlace.longitude}`} target="_blank">กดเพื่อนำทาง</a>
-            <h2>วันที่เผาเสร็จ: {this.state.selectedPlace.lastupdate}</h2>
+            <h2>อัพเดทล่าสุดเมื่อ: {this.state.selectedPlace.lastupdate}</h2>
           </div>
         </InfoWindow>
         {/* {data.map((marker, index) => {
