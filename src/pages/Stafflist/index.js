@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Table, Card, CardHeader, CardBody,Button } from "reactstrap";
+import jwt_decode from 'jwt-decode'
 export default class Stafflist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       staffdata:[],
+      email: '',
       loading: false,
       error: null
     };
@@ -25,6 +27,11 @@ export default class Stafflist extends Component {
   }
   componentDidMount() {
     this.fetchRequestData();
+    const token = localStorage.usertoken
+    const decoded = jwt_decode(token)
+    this.setState({
+      email: decoded.email
+    })
   }
   updateFilter = (event) => {
     this.setState({ value: event.target.value })
@@ -41,29 +48,8 @@ export default class Stafflist extends Component {
   }
 }
   render() {
-    return (
-      <div className="animated fadeIn">
-        {/* <label>
-          รายชื่อสตาฟ :
-          <select
-            onSelect={this.state.value}
-            onChange={this.updateFilter}>
-            {this.state.staffdata.map((staff) => {
-              return (
-                <option key={staff.staff_id} value={this.state.value}>
-                  {staff.first_name} {staff.last_name}
-                </option>
-              )                            
-            })}
-            
-          </select>
-        </label> */}
-        <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify"></i> รายชื่อสตาฟ
-              </CardHeader>
-              <CardBody>
-        <Table responsive >
+    const adminlink = (
+      <Table responsive >
           <thead>
             <tr>
               <th>ไอดี</th>
@@ -88,6 +74,34 @@ export default class Stafflist extends Component {
           )
           })}
         </Table>
+    )
+    const stafflink =(
+      <h1>เฉพาะแอดมินเท่านั้น</h1>
+      
+    )
+    return (
+      <div className="animated fadeIn">
+        {/* <label>
+          รายชื่อสตาฟ :
+          <select
+            onSelect={this.state.value}
+            onChange={this.updateFilter}>
+            {this.state.staffdata.map((staff) => {
+              return (
+                <option key={staff.staff_id} value={this.state.value}>
+                  {staff.first_name} {staff.last_name}
+                </option>
+              )                            
+            })}
+            
+          </select>
+        </label> */}
+        <Card>
+              <CardHeader>
+                <i className="fa fa-align-justify"></i> รายชื่อสตาฟ
+              </CardHeader>
+              <CardBody>
+              {this.state.email==='lnwza' ? adminlink : stafflink}
         </CardBody>
             </Card>
       </div>

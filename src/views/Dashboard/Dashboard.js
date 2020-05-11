@@ -556,6 +556,14 @@ class Dashboard extends Component {
       <div className="animated fadeIn">
         <div className="App-header">
           <h2>Dashboard</h2>
+          <label>
+            พื้นที่ : 
+            <select
+              onSelect={this.state.value}
+              onChange={this.updateFilter}>
+              <option value={this.state.statusValue} label="เชียงราย"></option>
+            </select>
+          </label>
           <h2>จำนวนคำขอทั้งหมด : {this.state.dataAmount}</h2>
           <h2>กำลังรอเจ้าหน้าที่ตรวจสอบ : {this.state.dataStatus1}</h2>
           <h2>กำลังดำเนินการชิงเผา : {this.state.dataStatus2}</h2>

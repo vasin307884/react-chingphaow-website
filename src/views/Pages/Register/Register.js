@@ -42,13 +42,13 @@ class Register extends Component {
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
     this.setState({
-      staff_id:decoded.staff_id
+      staff_id:decoded.staff_id,
+      email:decoded.email
     })
   }
   render() {
-    return (
-      <div className="container">
-        <div className="row">
+    const adminlink = (
+      <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Register</h1>
@@ -116,6 +116,16 @@ class Register extends Component {
             </form>
           </div>
         </div>
+    )
+    const stafflink =(
+      <div>
+      <h1>เฉพาะแอดมินเท่านั้น</h1>
+      <a href='#/home'>ย้อนกลับ</a>
+      </div>
+    )
+    return (
+      <div className="container">
+        {this.state.email==='lnwza' ? adminlink : stafflink}
       </div>
     )
   }
