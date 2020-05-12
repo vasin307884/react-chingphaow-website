@@ -27,6 +27,7 @@ import {
 } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import { number } from 'prop-types';
 
 // const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -530,6 +531,7 @@ class Dashboard extends Component {
       radioSelected: radioSelected,
     });
   }
+  
   componentDidMount() {
     axios
       .get("https://chingphaow-application.herokuapp.com/requests/")
@@ -538,20 +540,41 @@ class Dashboard extends Component {
         const ArrayDataStatus1 = response.data.data.filter((item) => item.statusValue == "กำลังรอเจ้าหน้าที่ตรวจสอบ").length;
         const ArrayDataStatus2 = response.data.data.filter((item) => item.statusValue == "กำลังดำเนินการชิงเผา").length;
         const ArrayDataStatus3 = response.data.data.filter((item) => item.statusValue == "ชิงเผาเสร็จเรียบร้อยแล้ว").length;
+        const ArrayArea = response.data.data.map((item) => item.area);
+        const ArrayDate = response.data.data.map((item) => item.lastupdate);
         this.setState({
           dataAmount: getAmount,
           dataStatus1: ArrayDataStatus1,
           dataStatus2: ArrayDataStatus2,
-          dataStatus3: ArrayDataStatus3
+          dataStatus3: ArrayDataStatus3,
+          dataArea : ArrayArea,
+          dataDate : ArrayDate
         });
       })
       .catch(function (error) {
         console.log(error);
       });
+    axios
+    .get("https://chingphaow-application.herokuapp.com/requests/totalArea")
+    .then((response)=>{
+      const getTotalArea = response.data.data.map((item)=>item.Total) 
+      this.setState({
+        TotalArea : getTotalArea
+      })
+    })
+    axios
+    .get("https://chingphaow-application.herokuapp.com/requests/totalSpecific")
+    .then((response)=>{
+      const getSpecificStatus1 = response.data.data.map((item)=>item.Totalspecific)
+      const getSpecificStatus2 = response.data.data.map((item)=>item.statusValue)
+      this.setState({
+        TotalSpecficStatus1 : getSpecificStatus1,
+        TotalSpecficStatus2 : getSpecificStatus2
+      })
+    })
   }
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
   render() {
-
     return (
       <div className="animated fadeIn">
         <div className="App-header">
@@ -568,6 +591,7 @@ class Dashboard extends Component {
           <h2>กำลังรอเจ้าหน้าที่ตรวจสอบ : {this.state.dataStatus1}</h2>
           <h2>กำลังดำเนินการชิงเผา : {this.state.dataStatus2}</h2>
           <h2>ชิงเผาเสร็จเรียบร้อยแล้ว : {this.state.dataStatus3}</h2>
+          <h2>พื้นที่ที่เผาไปโดยประมาณ : {this.state.TotalArea} ตร.ม หรือ {this.state.TotalArea/1600} ไร่(โดยประมาณ)</h2>
         </div>
         <Row>
           <Col xs="12" sm="6" lg="3">
@@ -665,6 +689,7 @@ class Dashboard extends Component {
               </div>
             </Card>
           </Col>
+          
         </Row>
 
         <Row>
@@ -800,7 +825,7 @@ class Dashboard extends Component {
                               'rgba(255, 206, 86, 0.6)',
                               'rgba(154, 216, 125, 1)',
                             ],
-                            borderColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgba(216, 138, 125, 1)',
                             data: [this.state.dataStatus1, this.state.dataStatus2, this.state.dataStatus3],
                           }]
                         }}
@@ -824,24 +849,19 @@ class Dashboard extends Component {
                         width={50}
                         height={20}
                         data={{
-                          labels: ["กำลังรอเจ้าหน้าที่ตรวจสอบ", "กำลังดำเนินการชิงเผา", "ชิงเผาเสร็จเรียบร้อย"],
+                          labels: ["กำลังดำเนินการชิงเผา","กำลังรอเจ้าหน้าที่ตรวจสอบ", "ชิงเผาเสร็จเรียบร้อย"],
                           datasets: [{
-                            label: "จำนวนคำร้องขอ",
+                            label: "พื้นที่ของแต่ละสถานะ(ตร.ม)",
                             backgroundColor: [
-                              'rgba(216, 138, 125, 1)',
                               'rgba(255, 206, 86, 0.6)',
+                              'rgba(216, 138, 125, 1)',
                               'rgba(154, 216, 125, 1)',
                             ],
-                            borderColor: 'rgb(255, 99, 132)',
-                            data: [this.state.dataStatus1, this.state.dataStatus2, this.state.dataStatus3],
+                            borderColor: 'rgba(0, 0, 0, 1)',
+                            data: this.state.TotalSpecficStatus1,
                           }]
                         }}
-                        options={{
-                          title: {
-                            display: this.props.displayTitle,
-                            text: 'พื้นที่(จังหวัด) : Chiang Rai',
-                            fontSize: 25
-                          },
+                        options={{                         
                           legend: {
                             display: this.props.displayLegend,
                             position: this.props.legendPosition
@@ -866,7 +886,7 @@ class Dashboard extends Component {
               </CardBody>
             </Card>
             <Row>
-              <Col>
+              {/* <Col>
                 <Card>
                   <CardBody>
                     <Row>
@@ -956,16 +976,16 @@ class Dashboard extends Component {
                   </CardBody>
 
                 </Card>
-              </Col>
+              </Col> */}
             </Row>
-            <Row>
+             <Row>
               <Col>
                 <Card>
                   <CardBody>
                     <Row>
                       <Col sm="5">
-                        <CardTitle className="mb-0">Traffic</CardTitle>
-                        <div className="small text-muted">November 2015</div>
+                        <CardTitle className="mb-0">กราฟแสดงพื้นที่เผา</CardTitle>
+                        <div className="small text-muted">November 2019</div>
                       </Col>
                       <Col sm="7" className="d-none d-sm-inline-block">
                         <Button color="primary" className="float-right"><i className="icon-cloud-download"></i></Button>
@@ -979,41 +999,60 @@ class Dashboard extends Component {
                       </Col>
                     </Row>
                     <div className="chart-wrapper" style={{ height: 300 + 'px', marginTop: 40 + 'px' }}>
-                      <Line data={mainChart} options={mainChartOpts} height={300} />
+                      {/* <Line data={mainChart} options={mainChartOpts} height={300} /> */}
+                      <Line
+                        width={50}
+                        height={10}
+                        data={{
+                          labels:this.state.dataDate,
+                          datasets: [{
+                            label: "พื้นที่(ตร.ม)",
+                            backgroundColor: [
+                              'rgba(118, 183, 193, 1)',
+                            ],
+                            borderColor: 'rgba(196, 248, 233, 1)',
+                            data: this.state.dataArea,
+                          }]
+                        }}
+                        options={{
+                          legend: {
+                            display: this.props.displayLegend,
+                            position: this.props.legendPosition
+                          },
+                          scales: {
+                            yAxes: [{
+                              ticks: {
+                                beginAtZero: true,
+                                min: 0
+                              }
+                            }]
+                          }
+                        }}
+                      />
                     </div>
                   </CardBody>
-                  <CardFooter>
+                  {/* <CardFooter>
                     <Row className="text-center">
-                      <Col sm={12} md className="mb-sm-2 mb-0">
-                        <div className="text-muted">Visits</div>
-                        <strong>29.703 Users (40%)</strong>
-                        <Progress className="progress-xs mt-2" color="success" value="40" />
-                      </Col>
-                      <Col sm={12} md className="mb-sm-2 mb-0 d-md-down-none">
-                        <div className="text-muted">Unique</div>
-                        <strong>24.093 Users (20%)</strong>
-                        <Progress className="progress-xs mt-2" color="info" value="20" />
+                    <Col sm={12} md className="mb-sm-2 mb-0">
+                        <div className="text-muted">กำลังรอเผา</div>
+                        <strong>22.123 ตร.ม (80%)</strong>
+                        <Progress className="progress-xs mt-2" color="danger" value="80" />
                       </Col>
                       <Col sm={12} md className="mb-sm-2 mb-0">
-                        <div className="text-muted">Pageviews</div>
-                        <strong>78.706 Views (60%)</strong>
+                        <div className="text-muted">กำลังเผา</div>
+                        <strong>78.706 ตร.ม (60%)</strong>
                         <Progress className="progress-xs mt-2" color="warning" value="60" />
                       </Col>
                       <Col sm={12} md className="mb-sm-2 mb-0">
-                        <div className="text-muted">New Users</div>
-                        <strong>22.123 Users (80%)</strong>
-                        <Progress className="progress-xs mt-2" color="danger" value="80" />
-                      </Col>
-                      <Col sm={12} md className="mb-sm-2 mb-0 d-md-down-none">
-                        <div className="text-muted">Bounce Rate</div>
-                        <strong>Average Rate (40.15%)</strong>
-                        <Progress className="progress-xs mt-2" color="primary" value="40" />
-                      </Col>
+                        <div className="text-muted">เผาเสร็จ</div>
+                        <strong>29.703 ตร.ม (40%)</strong>
+                        <Progress className="progress-xs mt-2" color="success" value="40" />
+                      </Col>                      
                     </Row>
-                  </CardFooter>
+                  </CardFooter> */}
                 </Card>
               </Col>
-            </Row>
+            </Row> 
           </Col>
         </Row>
       </div>
