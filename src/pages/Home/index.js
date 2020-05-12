@@ -147,8 +147,8 @@ export class Home extends Component {
   }
 }
 const mapStyles = {
-  width: '100%',
-  height: '100%',
+  width: '90%',
+  height: '75%',
 };
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyAyir1wNaHCINAHUmm_4e-8hpICN3Q6z2U'

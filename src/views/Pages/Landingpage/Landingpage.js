@@ -8,6 +8,7 @@ import "./css/default.css";
 import logo from "./asset/chingphaow.png";
 import alert from "./asset/alert.png";
 import LOGO1 from "./asset/LOGO1.PNG";
+import logo2 from "./asset/logo2.png";
 
 class Landingpage extends Component {
   constructor(props) {
@@ -128,9 +129,8 @@ class Landingpage extends Component {
                   Chiang-Rai.
                 </h1>
                 <p class="lead mt-4 mb-5">
-                  In the northern part of <b>Thailand</b> , there are mountains,
-                  forests and plantations of the villagers, which often causes
-                  wildfires during the dry season.
+                ในภาคเหนือของ <b>ประเทศ</b> 
+ในภาคเหนือของประเทศไทยมีภูเขาป่าไม้และสวนของชาวบ้านซึ่งมักทำให้เกิดไฟป่าในช่วงฤดูแล้ง
                 </p>
               </div>
               <div className="container">
@@ -225,16 +225,11 @@ class Landingpage extends Component {
             {/* topic1 */}
             <div class="row mt-5" id="about">
               <div class="col-md-6 order-2 order-md-1 my-md-auto">
-                <h3>About me</h3>
+                <h3>ชิงเผา คืออะไร ???</h3>
                 <p class="text-muted lead">
-                  Chingphaow is a method of Prescribe Burning which uses fire
-                  for forest management. Burning is the main objective. To
-                  reduce the amount of fuel in the forest This is to reduce the
-                  chance of forest fires. Or if a forest fire occurs The
-                  intensity and danger of the fire (Fire Hazard) will be less
-                  able to control the fire easily and safely.
+                การชิงเผาเป็นวิธีการหนึ่งของการเผาตามกำหนด (Prescribe Burning) อันเป็นการใช้ประโยชน์จากไฟเพื่อการจัดการป่าไม้ การชิงเผามีวัตถุประสงค์หลัก เพื่อลดปริมาณเชื้อเพลิงในป่าลง ทั้งนี้เพื่อเป็นการลดโอกาสในการเกิดไฟป่า หรือถ้าเกิดไฟป่าขึ้น ความรุนแรงแลอันตรายของไฟนั้น (Fire Hazard) จะมีน้อยลง สามารถควบคุมไฟได้ง่ายและปลอดภัย
                 </p>
-                <a href="#" class="btn1 btn1-primary">
+                <a href="http://www.dnp.go.th/forestfire/FIRESCIENCE/lesson%204/lesson4_3.htm" class="btn1 btn1-primary">
                   Read more
                 </a>
               </div>
@@ -258,14 +253,14 @@ class Landingpage extends Component {
 
               {/* topic2 */}
               <div class="col-md-6 my-md-auto">
-                <h3>Warning </h3>
+                <h3>ข้อควรคำนึงในการชิงเผา </h3>
                 <p class="text-muted lead">
-                  Chingohaow in the period of relative calm wind The weather is
-                  not very hot. And the relative humidity of the air is quite
-                  high With an appropriate time for the competition between 2 am
-                  and 5 pm
+                ต้องทำแนวกันไฟรอบพื้นที่ที่จะชิงเผาเสียก่อน เพื่อป้องกันไม่ให้ไฟลุกลามออกไปนอกพื้นที่ชิงเผา โดยอาจอาศัยแนวที่มีอยู่แล้ว เช่น ลำห้วย หรือถนน และต้องมีเจ้าหน้าที่พร้อมเครื่องมือดับไฟป่าคอยควบคุมไม่ให้ไฟลามออกนอกพื้นที่
                 </p>
-                <a href="#" class="btn1 btn1-primary">
+                <p class="text-muted lead">
+                ทำการชิงเผาในช่วงเวลาที่ลมค่อนข้างสงบ อากาศไม่ร้อนจัด และความชื้นสัมพัทธ์ของอากาศค่อนข้างสูง โดยช่วงเวลาที่เหมาะสมสำหรับการชิงเผาอยู่ระหว่าง 2.00 น. ถึง 5.00 น.
+                </p>
+                <a href="http://www.dnp.go.th/forestfire/FIRESCIENCE/lesson%204/lesson4_3.htm" class="btn1 btn1-primary">
                   Read more
                 </a>
               </div>
@@ -274,26 +269,24 @@ class Landingpage extends Component {
             <div class="row" id="download">
               <div class="col-md-6 order-2 order-md-1 my-md-auto">
                 {/* topic3 */}
-                <h3>Mobile application</h3>
+                <h3>แอปพลิเคชั่นของเรา</h3>
                 <p class="text-muted lead">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer id ante posuere, vestibulum mauris eget, efficitur
-                  felis. Vestibulum tincidunt sit amet odio at gravida. Cras
-                  mollis dapibus orci, in interdum odio scelerisque rhoncus.
+                  ชิงเผาเป็นแอปพลิเคชั่นที่ทำงานผสานกันระหว่างเว็ปไซต์และแอปพลิเคชั่นบนมือถือ
                 </p>
+                
                 <a href="#" class="btn1 btn1-primary">
-                  View project
+                 ดาวน์โหลด
                 </a>
               </div>
               <div class="col-md-6 order-1 order-md-2">
                 <img
-                  src="img/twitter-mobile.jpeg"
+                  src={logo2}
                   class="img-fluid d-block mx-auto"
                   alt="Twitter Mobile"
                 />
               </div>
             </div>
-            <hr class="my-4" />
+            <hr class="my-6" />
           </div>
         </section>
 
@@ -303,10 +296,9 @@ class Landingpage extends Component {
           <div class="container">
             <div class="row">
               <div class="col-md-7 mx-auto text-center">
-                <h2>How we work</h2>
+                <h2>เราทำงานกันยังไง ?</h2>
                 <p class="lead text-muted">
-                  Our methods will have get location ,system analyze ,update
-                  status ,start process chingphaow.
+                  เราจะได้รับตำแหน่งที่คุณส่งมาให้เราแล้วระบบจะวิเคราห์ข้อมูลให้อัตโนมัติเพื่อนำมาใช้ในกระบวนการชิงเผา
                 </p>
               </div>
             </div>
@@ -319,10 +311,9 @@ class Landingpage extends Component {
                     </div>
                   </div>
                   <div class="media-body">
-                    <h5>Get your location</h5>
+                    <h5>รับตำแหน่งที่ตั้งของคุณ</h5>
                     <p class="text-muted">
-                      When your send location on mobile application.System will
-                      receive your location.
+                     เมื่อคุณส่งตำแหน่งที่ตั่งมาให้เราผ่านทางแอปพลิเคชั่นของเรา ระบบจะทำการบันทึกข้อมูลที่คุณส่งมาทั้งหมด
                     </p>
                   </div>
                 </div>
@@ -333,10 +324,9 @@ class Landingpage extends Component {
                     </div>
                   </div>
                   <div class="media-body">
-                    <h5>System analyze</h5>
+                    <h5>ระบบทำการวิเคราห์ข้อมูล</h5>
                     <p class="text-muted">
-                      The system will analyze your data with Temperature,
-                      weather, humidity. To find the right date and time.
+                     ระบบของเราจะทำการวิเคราห์ข้อมูลของคุณกับอุณหภูมิ, สภาพอากาศ, ความชื้น เพื่อหาวันเวลาที่เหมาะสมในการเผา
                     </p>
                   </div>
                 </div>
@@ -347,10 +337,9 @@ class Landingpage extends Component {
                     </div>
                   </div>
                   <div class="media-body">
-                    <h5>Update status</h5>
+                    <h5>อัพเดตสถานะ</h5>
                     <p class="text-muted">
-                      The staff will change your status to yellow to be ready to
-                      burn.
+                      เจ้าหน้าที่ที่ดูแลจุดจะเปลี่ยนสถานะของคุณเป็นสีเหลืองเพื่อเตรียมพร้อมสู่การเผา
                     </p>
                   </div>
                 </div>
@@ -361,10 +350,9 @@ class Landingpage extends Component {
                     </div>
                   </div>
                   <div class="media-body">
-                    <h5>Start chingphaow</h5>
+                    <h5>เริ่มการชิงเผา</h5>
                     <p class="text-muted">
-                      The staff will change your status to yellow to be ready to
-                      burn.
+                      เจ้าหน้าที่ที่ดูแลจุดจะดำเนินการเผาตามกำหนดการที่ระบบวิเคราะห์มาให้
                     </p>
                   </div>
                 </div>
@@ -375,9 +363,9 @@ class Landingpage extends Component {
                     </div>
                   </div>
                   <div class="media-body">
-                    <h5>Finsih !</h5>
+                    <h5>เสร็จสิ้นกระบวนการ</h5>
                     <p class="text-muted">
-                      When the status turns green, the burn has finished.
+                      เมื่อสถานะของคุณเปลี่ยนเป็นสีเขียวแสดงว่าการชิงเผาเสร็จสิ้นแล้ว
                     </p>
                   </div>
                 </div>
@@ -399,18 +387,18 @@ class Landingpage extends Component {
 
         <div class="container" id="contact">
           <div class=" w3-container " id="contact">
-            <h3 class="contact w3-center w3-margin">CONTACT</h3>
+            <h3 class="contact w3-center w3-margin">ติดต่อเรา</h3>
             <p class="w3-center w3-large">
-              Lets get in touch. Send us a message:
+              ส่งข้อความมติดต่อมาหาเราได้ที่:
             </p>
             <div>
               <p>
                 <i class="mm fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>{" "}
-                Ching rai, Thailand
+                เชียงราย, ประเทศไทย
               </p>
               <p>
                 <i class="ph fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i>{" "}
-                Phone: 0812345
+                เบอร์โทร 0812345678
               </p>
               <p>
                 <i class="em fa fa-envelope fa-fw w3-xxlarge w3-margin-right">
@@ -424,7 +412,7 @@ class Landingpage extends Component {
                   <input
                     class="w3-input w3-border"
                     type="text"
-                    placeholder="Name"
+                    placeholder="ชื่อ-นามสกุล"
                     required
                     name="Name"
                   ></input>
@@ -442,7 +430,7 @@ class Landingpage extends Component {
                   <input
                     class="w3-input w3-border"
                     type="text"
-                    placeholder="Subject"
+                    placeholder="เรื่องที่ติดต่อ"
                     required
                     name="Subject"
                   ></input>
@@ -451,14 +439,14 @@ class Landingpage extends Component {
                   <input
                     class="w3-input w3-border"
                     type="text"
-                    placeholder="Message"
+                    placeholder="ข้อความ"
                     required
                     name="Message"
                   ></input>
                 </p>
                 <p>
                   <button class="buttonsubmit w3-button " type="submit">
-                    <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                    <i class="fa fa-paper-plane"></i> ส่งข้อความ
                   </button>
                 </p>
               </form>
@@ -468,7 +456,7 @@ class Landingpage extends Component {
         <br></br>
         <footer class="footer w3-center w3-padding-64">
           <a href="#homepage" class="w3-button w3-light-grey">
-            <i class="fa fa-arrow-up w3-margin-right"></i>To the top
+            <i class="fa fa-arrow-up w3-margin-right"></i>กลับไปข้างบน
           </a>
           <div class="w3-xlarge w3-section">
             <i class="fa fa-facebook-official w3-hover-opacity"></i>
