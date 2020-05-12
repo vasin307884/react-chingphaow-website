@@ -9,15 +9,7 @@ export default {
         text: 'NOW',
       },
     },
-    {
-      title: true,
-      name: 'TOOLS',
-      wrapper: {            // optional wrapper object
-        element: '',        // required valid HTML5 element tag
-        attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
-      },
-      class: ''             // optional class names space delimited list for title item ex: "text-center"
-    },
+    
     {
       name: 'แผนที่',
       url: '/home',
@@ -28,24 +20,8 @@ export default {
       url: '/Request',
       icon: 'icon-calculator',
     },
-    {
-      name: 'เจ้าหน้าที่',
-      url: '/buttons',
-      icon: 'icon-cursor',
-      children: [
-        {
-          name: 'รายชื่อเจ้าหน้าที่',
-          url: '/stafflist',
-          icon: 'icon-cursor',
-        },
-        {
-          name: 'ลงทะเบียนเจ้าหน้าที่',
-          url: '/register',
-          icon: 'icon-cursor',
-        },
-       
-      ],
-    },
+  
+    
     // {
     //   title: true,
     //   name: 'Theme',
