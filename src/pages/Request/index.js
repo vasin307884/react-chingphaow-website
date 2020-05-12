@@ -84,6 +84,7 @@ export default class Request extends Component {
               <th>วันที่ส่งมา</th>
               <th>วันที่เริ่ม</th>
               <th>อัพเดทล่าสุดเมื่อ</th>
+              <th>พื้นที่</th>
               <th>สถานะ</th>
               <th>เจ้าหน้าที่ที่ดูแล</th>
             </tr>
@@ -102,6 +103,7 @@ export default class Request extends Component {
                 <td>{requestsdata.fromdate}</td>
                 <td>{requestsdata.todate}</td>
                 <td>{requestsdata.lastupdate}</td>
+                <td>{requestsdata.area} ตร.ม ({requestsdata.area/1600} ไร่)</td>
                 <Badge style={{ color: requestsdata.color }}>
                   {requestsdata.statusValue}
                 </Badge>

@@ -555,7 +555,7 @@ class Dashboard extends Component {
         console.log(error);
       });
     axios
-    .get("http://localhost:4000/requests/totalArea")
+    .get("https://chingphaow-application.herokuapp.com/requests/totalArea")
     .then((response)=>{
       const getTotalArea = response.data.data.map((item)=>item.Total) 
       this.setState({
@@ -563,7 +563,7 @@ class Dashboard extends Component {
       })
     })
     axios
-    .get("http://localhost:4000/requests/totalSpecific")
+    .get("https://chingphaow-application.herokuapp.com/requests/totalSpecific")
     .then((response)=>{
       const getSpecificStatus1 = response.data.data.map((item)=>item.Totalspecific)
       const getSpecificStatus2 = response.data.data.map((item)=>item.statusValue)
@@ -689,6 +689,7 @@ class Dashboard extends Component {
               </div>
             </Card>
           </Col>
+          
         </Row>
 
         <Row>
