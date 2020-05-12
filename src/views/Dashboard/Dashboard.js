@@ -1,7 +1,7 @@
 // import React, { Component, lazy, Suspense } from 'react';
 import React, { Component } from 'react';
-import { Bar, Line ,Pie,} from 'react-chartjs-2';
-
+import { Bar, Line, Pie, } from 'react-chartjs-2';
+import axios from 'axios';
 
 import {
   Badge,
@@ -22,11 +22,12 @@ import {
   Progress,
   Row,
   Container,
- 
+
   // Table,
 } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import { number } from 'prop-types';
 
 // const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -137,7 +138,7 @@ const bar = {
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40,50],
+      data: [65, 59, 80, 81, 56, 55, 40, 50],
     },
   ],
 };
@@ -463,7 +464,7 @@ const mainChartOpts = {
     mode: 'index',
     position: 'nearest',
     callbacks: {
-      labelColor: function(tooltipItem, chart) {
+      labelColor: function (tooltipItem, chart) {
         return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
       }
     }
@@ -500,6 +501,12 @@ const mainChartOpts = {
 };
 
 class Dashboard extends Component {
+  static defaultProps = {
+    displayTitle: true,
+    displayLegend: true,
+    legendPosition: 'right',
+    location: 'Chiang Rai'
+  }
   constructor(props) {
     super(props);
 
@@ -509,6 +516,7 @@ class Dashboard extends Component {
     this.state = {
       dropdownOpen: false,
       radioSelected: 2,
+      chartData: {}
     };
   }
 
@@ -523,15 +531,70 @@ class Dashboard extends Component {
       radioSelected: radioSelected,
     });
   }
-
+  
+  componentDidMount() {
+    axios
+      .get("https://chingphaow-application.herokuapp.com/requests/")
+      .then((response) => {
+        const getAmount = response.data.data.length;
+        const ArrayDataStatus1 = response.data.data.filter((item) => item.statusValue == "กำลังรอเจ้าหน้าที่ตรวจสอบ").length;
+        const ArrayDataStatus2 = response.data.data.filter((item) => item.statusValue == "กำลังดำเนินการชิงเผา").length;
+        const ArrayDataStatus3 = response.data.data.filter((item) => item.statusValue == "ชิงเผาเสร็จเรียบร้อยแล้ว").length;
+        const ArrayArea = response.data.data.map((item) => item.area);
+        const ArrayDate = response.data.data.map((item) => item.lastupdate);
+        this.setState({
+          dataAmount: getAmount,
+          dataStatus1: ArrayDataStatus1,
+          dataStatus2: ArrayDataStatus2,
+          dataStatus3: ArrayDataStatus3,
+          dataArea : ArrayArea,
+          dataDate : ArrayDate
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios
+    .get("https://chingphaow-application.herokuapp.com/requests/totalArea")
+    .then((response)=>{
+      const getTotalArea = response.data.data.map((item)=>item.Total) 
+      this.setState({
+        TotalArea : getTotalArea
+      })
+    })
+    axios
+    .get("https://chingphaow-application.herokuapp.com/requests/totalSpecific")
+    .then((response)=>{
+      const getSpecificStatus1 = response.data.data.map((item)=>item.Totalspecific)
+      const getSpecificStatus2 = response.data.data.map((item)=>item.statusValue)
+      this.setState({
+        TotalSpecficStatus1 : getSpecificStatus1,
+        TotalSpecficStatus2 : getSpecificStatus2
+      })
+    })
+  }
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
-
   render() {
-
     return (
       <div className="animated fadeIn">
+        <div className="App-header">
+          <h2>Dashboard</h2>
+          <label>
+            พื้นที่ : 
+            <select
+              onSelect={this.state.value}
+              onChange={this.updateFilter}>
+              <option value={this.state.statusValue} label="เชียงราย"></option>
+            </select>
+          </label>
+          <h2>จำนวนคำขอทั้งหมด : {this.state.dataAmount}</h2>
+          <h2>กำลังรอเจ้าหน้าที่ตรวจสอบ : {this.state.dataStatus1}</h2>
+          <h2>กำลังดำเนินการชิงเผา : {this.state.dataStatus2}</h2>
+          <h2>ชิงเผาเสร็จเรียบร้อยแล้ว : {this.state.dataStatus3}</h2>
+          <h2>พื้นที่ที่เผาไปโดยประมาณ : {this.state.TotalArea} ตร.ม หรือ {this.state.TotalArea/1600} ไร่(โดยประมาณ)</h2>
+        </div>
         <Row>
-        <Col xs="12" sm="6" lg="3">
+          <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-info">
               <CardBody className="pb-0">
                 <ButtonGroup className="float-right">
@@ -546,8 +609,8 @@ class Dashboard extends Component {
                     </DropdownMenu> */}
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.dataAmount}</div>
+                <div>จำนวนคำขอทั้งหมด</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData2} options={cardChartOpts2} height={70} />
@@ -570,8 +633,8 @@ class Dashboard extends Component {
                     </DropdownMenu> */}
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.dataStatus1}</div>
+                <div>กำลังรอเจ้าหน้าที่ตรวจสอบ</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData1} options={cardChartOpts1} height={70} />
@@ -594,8 +657,8 @@ class Dashboard extends Component {
                     </DropdownMenu> */}
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.dataStatus2}</div>
+                <div>กำลังดำเนินการชิงเผา</div>
               </CardBody>
               <div className="chart-wrapper" style={{ height: '70px' }}>
                 <Line data={cardChartData3} options={cardChartOpts3} height={70} />
@@ -618,16 +681,17 @@ class Dashboard extends Component {
                     </DropdownMenu> */}
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.dataStatus3}</div>
+                <div>ชิงเผาเสร็จเรียบร้อยแล้ว</div>
               </CardBody>
               <div className="chart-wrapper" style={{ height: '70px' }}>
                 <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
               </div>
             </Card>
           </Col>
+          
         </Row>
-  
+
         <Row>
           <Col>
             <Card>
@@ -674,7 +738,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                        Tuesday
+                          Tuesday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -685,7 +749,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                        Wednesday
+                          Wednesday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -696,7 +760,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                        Thursday
+                          Thursday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -707,7 +771,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                        Friday
+                          Friday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -718,7 +782,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                        Saturday
+                          Saturday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -729,7 +793,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                        Sunday
+                          Sunday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -748,171 +812,247 @@ class Dashboard extends Component {
                     </div>
                   </Col>
                   <Col xs="12" md="6" xl="6">
-                  <div className="chart-wrapper">
-                <Pie data={pie} />
-              </div>
-                   
+                    <div className="chart-wrapper">
+                      <Pie
+                        width={50}
+                        height={25}
+                        data={{
+                          labels: ["กำลังรอเจ้าหน้าที่ตรวจสอบ", "กำลังดำเนินการชิงเผา", "ชิงเผาเสร็จเรียบร้อย"],
+                          datasets: [{
+                            label: "จำนวนคำร้องขอ",
+                            backgroundColor: [
+                              'rgba(216, 138, 125, 1)',
+                              'rgba(255, 206, 86, 0.6)',
+                              'rgba(154, 216, 125, 1)',
+                            ],
+                            borderColor: 'rgba(216, 138, 125, 1)',
+                            data: [this.state.dataStatus1, this.state.dataStatus2, this.state.dataStatus3],
+                          }]
+                        }}
+                        options={{
+                          title: {
+                            display: this.props.displayTitle,
+                            text: 'พื้นที่(จังหวัด) : Chiang Rai',
+                            fontSize: 25
+                          },
+                          legend: {
+                            display: this.props.displayLegend,
+                            position: this.props.legendPosition
+                          }
+                        }}
+                      />
+                    </div>
+
                     <hr className="mt-0" />
                     <div className="chart-wrapper">
-                <Bar data={bar} options={options} />
-              </div>
-                    
+                      <Bar
+                        width={50}
+                        height={20}
+                        data={{
+                          labels: ["กำลังดำเนินการชิงเผา","กำลังรอเจ้าหน้าที่ตรวจสอบ", "ชิงเผาเสร็จเรียบร้อย"],
+                          datasets: [{
+                            label: "พื้นที่ของแต่ละสถานะ(ตร.ม)",
+                            backgroundColor: [
+                              'rgba(255, 206, 86, 0.6)',
+                              'rgba(216, 138, 125, 1)',
+                              'rgba(154, 216, 125, 1)',
+                            ],
+                            borderColor: 'rgba(0, 0, 0, 1)',
+                            data: this.state.TotalSpecficStatus1,
+                          }]
+                        }}
+                        options={{                         
+                          legend: {
+                            display: this.props.displayLegend,
+                            position: this.props.legendPosition
+                          },
+                          scales: {
+                            yAxes: [{
+                              ticks: {
+                                beginAtZero: true,
+                                min: 0
+                              }
+                            }]
+                          }
+                        }}
+                      />
+                    </div>
+
                   </Col>
                 </Row>
                 <br />
-               
+
 
               </CardBody>
             </Card>
             <Row>
-          <Col>
-            <Card>
-              <CardBody>
-                <Row>
-                  <Col sm="5">
-                    <CardTitle className="mb-0">Traffic</CardTitle>
-                   
-                  </Col>
-                  <Container>
+              {/* <Col>
+                <Card>
+                  <CardBody>
                     <Row>
-                    <Col xs="12" sm="6" lg="4">
-            <Card className="text-white bg-dark  ">
-              <CardBody className="pb-0">
-                <div className="text-value">1658</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper" style={{ height: '70px' }}>
-                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
-              </div>
-            </Card>
-          </Col>
-          <Col xs="12" sm="6" lg="4">
-            <Card className="text-white bg-dark ">
-              <CardBody className="pb-0">
-            
-                <div className="text-value">94</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper" style={{ height: '70px' }}>
-                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
-              </div>
-            </Card>
-          </Col>
-          <br />
-          <Col xs="12" sm="6" lg="4">
-            <Card className="text-white bg-dark ">
-              <CardBody className="pb-0">
-                
-                <div className="text-value">375</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper" style={{ height: '70px' }}>
-                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
-              </div>
-            </Card>
-          </Col>
-          <br></br>
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-dark">
-              <CardBody className="pb-0">
-               
-                <div className="text-value">1</div>
-                <div>Members online</div>
-              </CardBody>
-           
-            </Card>
-          </Col>
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-dark">
-              <CardBody className="pb-0">
-                <div className="text-value">39</div>
-                <div>Members online</div>
-              </CardBody>
-           
-            </Card>
-          </Col>
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-dark">
-              <CardBody className="pb-0">
-                <div className="text-value">97</div>
-                <div>Members online</div>
-              </CardBody>
-           
-            </Card>
-          </Col>
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-dark">
-              <CardBody className="pb-0">
-                <div className="text-value">709</div>
-                <div>Members online</div>
-              </CardBody>
-           
-            </Card>
-          </Col>
-                   </Row>
-                  </Container>
-                </Row>
-              </CardBody>
-             
-            </Card>
-          </Col>
-        </Row>
-            <Row>
-          <Col>
-            <Card>
-              <CardBody>
-                <Row>
-                  <Col sm="5">
-                    <CardTitle className="mb-0">Traffic</CardTitle>
-                    <div className="small text-muted">November 2015</div>
-                  </Col>
-                  <Col sm="7" className="d-none d-sm-inline-block">
-                    <Button color="primary" className="float-right"><i className="icon-cloud-download"></i></Button>
-                    <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
-                      <ButtonGroup className="mr-3" aria-label="First group">
-                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(1)} active={this.state.radioSelected === 1}>Day</Button>
-                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(2)} active={this.state.radioSelected === 2}>Month</Button>
-                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(3)} active={this.state.radioSelected === 3}>Year</Button>
-                      </ButtonGroup>
-                    </ButtonToolbar>
-                  </Col>
-                </Row>
-                <div className="chart-wrapper" style={{ height: 300 + 'px', marginTop: 40 + 'px' }}>
-                  <Line data={mainChart} options={mainChartOpts} height={300} />
-                </div>
-              </CardBody>
-              <CardFooter>
-                <Row className="text-center">
-                  <Col sm={12} md className="mb-sm-2 mb-0">
-                    <div className="text-muted">Visits</div>
-                    <strong>29.703 Users (40%)</strong>
-                    <Progress className="progress-xs mt-2" color="success" value="40" />
-                  </Col>
-                  <Col sm={12} md className="mb-sm-2 mb-0 d-md-down-none">
-                    <div className="text-muted">Unique</div>
-                    <strong>24.093 Users (20%)</strong>
-                    <Progress className="progress-xs mt-2" color="info" value="20" />
-                  </Col>
-                  <Col sm={12} md className="mb-sm-2 mb-0">
-                    <div className="text-muted">Pageviews</div>
-                    <strong>78.706 Views (60%)</strong>
-                    <Progress className="progress-xs mt-2" color="warning" value="60" />
-                  </Col>
-                  <Col sm={12} md className="mb-sm-2 mb-0">
-                    <div className="text-muted">New Users</div>
-                    <strong>22.123 Users (80%)</strong>
-                    <Progress className="progress-xs mt-2" color="danger" value="80" />
-                  </Col>
-                  <Col sm={12} md className="mb-sm-2 mb-0 d-md-down-none">
-                    <div className="text-muted">Bounce Rate</div>
-                    <strong>Average Rate (40.15%)</strong>
-                    <Progress className="progress-xs mt-2" color="primary" value="40" />
-                  </Col>
-                </Row>
-              </CardFooter>
-            </Card>
-          </Col>
-        </Row>
+                      <Col sm="5">
+                        <CardTitle className="mb-0">Traffic</CardTitle>
+
+                      </Col>
+                      <Container>
+                        <Row>
+                          <Col xs="12" sm="6" lg="4">
+                            <Card className="text-white bg-dark  ">
+                              <CardBody className="pb-0">
+                                <div className="text-value">1658</div>
+                                <div>Members online</div>
+                              </CardBody>
+                              <div className="chart-wrapper" style={{ height: '70px' }}>
+                                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
+                              </div>
+                            </Card>
+                          </Col>
+                          <Col xs="12" sm="6" lg="4">
+                            <Card className="text-white bg-dark ">
+                              <CardBody className="pb-0">
+
+                                <div className="text-value">94</div>
+                                <div>Members online</div>
+                              </CardBody>
+                              <div className="chart-wrapper" style={{ height: '70px' }}>
+                                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
+                              </div>
+                            </Card>
+                          </Col>
+                          <br />
+                          <Col xs="12" sm="6" lg="4">
+                            <Card className="text-white bg-dark ">
+                              <CardBody className="pb-0">
+
+                                <div className="text-value">375</div>
+                                <div>Members online</div>
+                              </CardBody>
+                              <div className="chart-wrapper" style={{ height: '70px' }}>
+                                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
+                              </div>
+                            </Card>
+                          </Col>
+                          <br></br>
+                          <Col xs="12" sm="6" lg="3">
+                            <Card className="text-white bg-dark">
+                              <CardBody className="pb-0">
+
+                                <div className="text-value">1</div>
+                                <div>Members online</div>
+                              </CardBody>
+
+                            </Card>
+                          </Col>
+                          <Col xs="12" sm="6" lg="3">
+                            <Card className="text-white bg-dark">
+                              <CardBody className="pb-0">
+                                <div className="text-value">39</div>
+                                <div>Members online</div>
+                              </CardBody>
+
+                            </Card>
+                          </Col>
+                          <Col xs="12" sm="6" lg="3">
+                            <Card className="text-white bg-dark">
+                              <CardBody className="pb-0">
+                                <div className="text-value">97</div>
+                                <div>Members online</div>
+                              </CardBody>
+
+                            </Card>
+                          </Col>
+                          <Col xs="12" sm="6" lg="3">
+                            <Card className="text-white bg-dark">
+                              <CardBody className="pb-0">
+                                <div className="text-value">709</div>
+                                <div>Members online</div>
+                              </CardBody>
+
+                            </Card>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </Row>
+                  </CardBody>
+
+                </Card>
+              </Col> */}
+            </Row>
+             <Row>
+              <Col>
+                <Card>
+                  <CardBody>
+                    <Row>
+                      <Col sm="5">
+                        <CardTitle className="mb-0">กราฟแสดงพื้นที่เผา</CardTitle>
+                        <div className="small text-muted">November 2019</div>
+                      </Col>
+                      <Col sm="7" className="d-none d-sm-inline-block">
+                        <Button color="primary" className="float-right"><i className="icon-cloud-download"></i></Button>
+                        <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
+                          <ButtonGroup className="mr-3" aria-label="First group">
+                            <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(1)} active={this.state.radioSelected === 1}>Day</Button>
+                            <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(2)} active={this.state.radioSelected === 2}>Month</Button>
+                            <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(3)} active={this.state.radioSelected === 3}>Year</Button>
+                          </ButtonGroup>
+                        </ButtonToolbar>
+                      </Col>
+                    </Row>
+                    <div className="chart-wrapper" style={{ height: 300 + 'px', marginTop: 40 + 'px' }}>
+                      {/* <Line data={mainChart} options={mainChartOpts} height={300} /> */}
+                      <Line
+                        width={50}
+                        height={10}
+                        data={{
+                          labels:this.state.dataDate,
+                          datasets: [{
+                            label: "พื้นที่(ตร.ม)",
+                            backgroundColor: [
+                              'rgba(118, 183, 193, 1)',
+                            ],
+                            borderColor: 'rgba(196, 248, 233, 1)',
+                            data: this.state.dataArea,
+                          }]
+                        }}
+                        options={{
+                          legend: {
+                            display: this.props.displayLegend,
+                            position: this.props.legendPosition
+                          },
+                          scales: {
+                            yAxes: [{
+                              ticks: {
+                                beginAtZero: true,
+                                min: 0
+                              }
+                            }]
+                          }
+                        }}
+                      />
+                    </div>
+                  </CardBody>
+                  {/* <CardFooter>
+                    <Row className="text-center">
+                    <Col sm={12} md className="mb-sm-2 mb-0">
+                        <div className="text-muted">กำลังรอเผา</div>
+                        <strong>22.123 ตร.ม (80%)</strong>
+                        <Progress className="progress-xs mt-2" color="danger" value="80" />
+                      </Col>
+                      <Col sm={12} md className="mb-sm-2 mb-0">
+                        <div className="text-muted">กำลังเผา</div>
+                        <strong>78.706 ตร.ม (60%)</strong>
+                        <Progress className="progress-xs mt-2" color="warning" value="60" />
+                      </Col>
+                      <Col sm={12} md className="mb-sm-2 mb-0">
+                        <div className="text-muted">เผาเสร็จ</div>
+                        <strong>29.703 ตร.ม (40%)</strong>
+                        <Progress className="progress-xs mt-2" color="success" value="40" />
+                      </Col>                      
+                    </Row>
+                  </CardFooter> */}
+                </Card>
+              </Col>
+            </Row> 
           </Col>
         </Row>
       </div>
