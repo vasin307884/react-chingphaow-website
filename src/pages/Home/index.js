@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable array-callback-return */
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
