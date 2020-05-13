@@ -1,6 +1,6 @@
 // import React, { Component, lazy, Suspense } from 'react';
 import React, { Component } from 'react';
-import { Bar, Line, Pie, } from 'react-chartjs-2';
+import { Bar, Line, Pie, Polar, Radar, } from 'react-chartjs-2';
 import axios from 'axios';
 
 import {
@@ -11,7 +11,7 @@ import {
   ButtonToolbar,
   Card,
   CardBody,
-  // CardFooter,
+  CardFooter,
   CardHeader,
   CardTitle,
   Col,
@@ -21,18 +21,18 @@ import {
   DropdownToggle,
   Progress,
   Row,
-  
+  Container,
 
   // Table,
 } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities'
-// import { number } from 'prop-types';
-
+import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import { number } from 'prop-types';
+import AQItable from './asset/aqi.JPG'
 // const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
 const brandPrimary = getStyle('--primary')
-// const brandSuccess = getStyle('--success')
+const brandSuccess = getStyle('--success')
 const brandInfo = getStyle('--info')
 // const brandWarning = getStyle('--warning')
 const brandDanger = getStyle('--danger')
@@ -49,27 +49,27 @@ const cardChartData1 = {
     },
   ],
 };
-// const pie = {
-//   labels: [
-//     'Red',
-//     'Green',
-//     'Yellow',
-//   ],
-//   datasets: [
-//     {
-//       data: [300, 50, 100],
-//       backgroundColor: [
-//         '#FF6384',
-//         '#36A2EB',
-//         '#FFCE56',
-//       ],
-//       hoverBackgroundColor: [
-//         '#FF6384',
-//         '#36A2EB',
-//         '#FFCE56',
-//       ],
-//     }],
-// };
+const pie = {
+  labels: [
+    'Red',
+    'Green',
+    'Yellow',
+  ],
+  datasets: [
+    {
+      data: [300, 50, 100],
+      backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+      ],
+      hoverBackgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+      ],
+    }],
+};
 
 const cardChartOpts1 = {
   tooltips: {
@@ -128,27 +128,27 @@ const cardChartData2 = {
     },
   ],
 };
-// const bar = {
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//   datasets: [
-//     {
-//       label: 'My First dataset',
-//       backgroundColor: 'rgba(255,99,132,0.2)',
-//       borderColor: 'rgba(255,99,132,1)',
-//       borderWidth: 1,
-//       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-//       hoverBorderColor: 'rgba(255,99,132,1)',
-//       data: [65, 59, 80, 81, 56, 55, 40, 50],
-//     },
-//   ],
-// };
-// const options = {
-//   tooltips: {
-//     enabled: false,
-//     custom: CustomTooltips
-//   },
-//   maintainAspectRatio: false
-// }
+const bar = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      label: 'My First dataset',
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: [65, 59, 80, 81, 56, 55, 40, 50],
+    },
+  ],
+};
+const options = {
+  tooltips: {
+    enabled: false,
+    custom: CustomTooltips
+  },
+  maintainAspectRatio: false
+}
 
 const cardChartOpts2 = {
   tooltips: {
@@ -425,80 +425,80 @@ for (var i = 0; i <= elements; i++) {
   data3.push(65);
 }
 
-// const mainChart = {
-//   labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
-//   datasets: [
-//     {
-//       label: 'My First dataset',
-//       backgroundColor: hexToRgba(brandInfo, 10),
-//       borderColor: brandInfo,
-//       pointHoverBackgroundColor: '#fff',
-//       borderWidth: 2,
-//       data: data1,
-//     },
-//     {
-//       label: 'My Second dataset',
-//       backgroundColor: 'transparent',
-//       borderColor: brandSuccess,
-//       pointHoverBackgroundColor: '#fff',
-//       borderWidth: 2,
-//       data: data2,
-//     },
-//     {
-//       label: 'My Third dataset',
-//       backgroundColor: 'transparent',
-//       borderColor: brandDanger,
-//       pointHoverBackgroundColor: '#fff',
-//       borderWidth: 1,
-//       borderDash: [8, 5],
-//       data: data3,
-//     },
-//   ],
-// };
+const mainChart = {
+  labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+  datasets: [
+    {
+      label: 'My First dataset',
+      backgroundColor: hexToRgba(brandInfo, 10),
+      borderColor: brandInfo,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: data1,
+    },
+    {
+      label: 'My Second dataset',
+      backgroundColor: 'transparent',
+      borderColor: brandSuccess,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: data2,
+    },
+    {
+      label: 'My Third dataset',
+      backgroundColor: 'transparent',
+      borderColor: brandDanger,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5],
+      data: data3,
+    },
+  ],
+};
 
-// const mainChartOpts = {
-//   tooltips: {
-//     enabled: false,
-//     custom: CustomTooltips,
-//     intersect: true,
-//     mode: 'index',
-//     position: 'nearest',
-//     callbacks: {
-//       labelColor: function (tooltipItem, chart) {
-//         return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
-//       }
-//     }
-//   },
-//   maintainAspectRatio: false,
-//   legend: {
-//     display: false,
-//   },
-//   scales: {
-//     xAxes: [
-//       {
-//         gridLines: {
-//           drawOnChartArea: false,
-//         },
-//       }],
-//     yAxes: [
-//       {
-//         ticks: {
-//           beginAtZero: true,
-//           maxTicksLimit: 5,
-//           stepSize: Math.ceil(250 / 5),
-//           max: 250,
-//         },
-//       }],
-//   },
-//   elements: {
-//     point: {
-//       radius: 0,
-//       hitRadius: 10,
-//       hoverRadius: 4,
-//       hoverBorderWidth: 3,
-//     },
-//   },
-// };
+const mainChartOpts = {
+  tooltips: {
+    enabled: false,
+    custom: CustomTooltips,
+    intersect: true,
+    mode: 'index',
+    position: 'nearest',
+    callbacks: {
+      labelColor: function (tooltipItem, chart) {
+        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
+      }
+    }
+  },
+  maintainAspectRatio: false,
+  legend: {
+    display: false,
+  },
+  scales: {
+    xAxes: [
+      {
+        gridLines: {
+          drawOnChartArea: false,
+        },
+      }],
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+          maxTicksLimit: 5,
+          stepSize: Math.ceil(250 / 5),
+          max: 250,
+        },
+      }],
+  },
+  elements: {
+    point: {
+      radius: 0,
+      hitRadius: 10,
+      hoverRadius: 4,
+      hoverBorderWidth: 3,
+    },
+  },
+};
 
 class Dashboard extends Component {
   static defaultProps = {
@@ -537,9 +537,9 @@ class Dashboard extends Component {
       .get("https://chingphaow-application.herokuapp.com/requests/")
       .then((response) => {
         const getAmount = response.data.data.length;
-        const ArrayDataStatus1 = response.data.data.filter((item) => item.statusValue === "กำลังรอเจ้าหน้าที่ตรวจสอบ").length;
-        const ArrayDataStatus2 = response.data.data.filter((item) => item.statusValue === "กำลังดำเนินการชิงเผา").length;
-        const ArrayDataStatus3 = response.data.data.filter((item) => item.statusValue === "ชิงเผาเสร็จเรียบร้อยแล้ว").length;
+        const ArrayDataStatus1 = response.data.data.filter((item) => item.statusValue == "กำลังรอเจ้าหน้าที่ตรวจสอบ").length;
+        const ArrayDataStatus2 = response.data.data.filter((item) => item.statusValue == "กำลังดำเนินการชิงเผา").length;
+        const ArrayDataStatus3 = response.data.data.filter((item) => item.statusValue == "ชิงเผาเสร็จเรียบร้อยแล้ว").length;
         const ArrayArea = response.data.data.map((item) => item.area);
         const ArrayDate = response.data.data.map((item) => item.lastupdate);
         this.setState({
@@ -587,11 +587,11 @@ class Dashboard extends Component {
               <option value={this.state.statusValue} label="เชียงราย"></option>
             </select>
           </label>
-          <h2>จำนวนคำขอทั้งหมด : {this.state.dataAmount}</h2>
+          {/* <h2>จำนวนคำขอทั้งหมด : {this.state.dataAmount}</h2>
           <h2>กำลังรอเจ้าหน้าที่ตรวจสอบ : {this.state.dataStatus1}</h2>
           <h2>กำลังดำเนินการชิงเผา : {this.state.dataStatus2}</h2>
           <h2>ชิงเผาเสร็จเรียบร้อยแล้ว : {this.state.dataStatus3}</h2>
-          <h2>พื้นที่ที่เผาไปโดยประมาณ : {this.state.TotalArea} ตร.ม หรือ {this.state.TotalArea/1600} ไร่(โดยประมาณ)</h2>
+          <h2>พื้นที่ที่เผาไปโดยประมาณ : {this.state.TotalArea} ตร.ม หรือ {this.state.TotalArea/1600} ไร่(โดยประมาณ)</h2> */}
         </div>
         <Row>
           <Col xs="12" sm="6" lg="3">
@@ -619,7 +619,7 @@ class Dashboard extends Component {
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-primary">
+            <Card className="text-white bg-danger ">
               <CardBody className="pb-0">
                 <ButtonGroup className="float-right">
                   <Dropdown id='card2' isOpen={this.state.card2} toggle={() => { this.setState({ card2: !this.state.card2 }); }}>
@@ -636,8 +636,8 @@ class Dashboard extends Component {
                 <div className="text-value">{this.state.dataStatus1}</div>
                 <div>กำลังรอเจ้าหน้าที่ตรวจสอบ</div>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
-                <Line data={cardChartData1} options={cardChartOpts1} height={70} />
+              <div className="chart-wrapper" style={{ height: '70px' }}>
+                <Line data={cardChartData3} options={cardChartOpts3} height={70} />
               </div>
             </Card>
           </Col>
@@ -667,7 +667,7 @@ class Dashboard extends Component {
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-danger">
+            <Card className="text-white bg-success ">
               <CardBody className="pb-0">
                 <ButtonGroup className="float-right">
                   <Dropdown id='card4' isOpen={this.state.card4} toggle={() => { this.setState({ card4: !this.state.card4 }); }}>
@@ -696,7 +696,7 @@ class Dashboard extends Component {
           <Col>
             <Card>
               <CardHeader>
-                Traffic {' & '} Sales
+              พื้นที่ทั้งหมด
               </CardHeader>
               <CardBody>
                 <Row>
@@ -704,9 +704,9 @@ class Dashboard extends Component {
                     <Row>
                       <Col sm="6">
                         <div className="callout callout-info">
-                          <small className="text-muted">New Clients</small>
+                          <small className="text-muted">พื้นที่ทั้งหมด</small>
                           <br />
-                          <strong className="h4">9,123</strong>
+                          <strong className="h4">{this.state.TotalArea}</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(0, brandPrimary)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
@@ -714,16 +714,61 @@ class Dashboard extends Component {
                       </Col>
                       <Col sm="6">
                         <div className="callout callout-danger">
-                          <small className="text-muted">Recurring Clients</small>
+                          <small className="text-muted">PM2.5(ug/m^3)เฉลี่ย</small>
                           <br />
-                          <strong className="h4">22,643</strong>
+                          <strong className="h4">33</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(1, brandDanger)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
-                        </div>
+                        </div>                        
+                      </Col>
+                      <Col sm="6">
+                        <div className="callout callout-success">
+                          <small className="text-muted">AQI(ดัชนีคุณภาพอากาศเฉลี่ย)</small>
+                          <br />
+                          <strong className="h4">48</strong>
+                          <div className="chart-wrapper">
+                            <Line data={makeSparkLineData(4, brandSuccess)} options={sparklineChartOpts} width={100} height={30} />
+                          </div>
+                        </div>                        
                       </Col>
                     </Row>
-                    <hr className="mt-0" />
+                    <Line
+                        width={60}
+                        height={20}
+                        data={{
+                          labels:['เฉลี่ย 24 ชม.','เฉลี่ย 12 ชม.','เฉลี่ย 6 ชม.','เฉลี่ย 3 ชม.','เฉลี่ย 1 ชม.'],
+                          datasets: [{
+                            label: "PM2.5(ug/m^3)",
+                            backgroundColor: [
+                              brandDanger,
+                            ],
+                            borderColor: brandDanger,
+                            data: [18,28,26,14,21],
+                          },                        
+                          {
+                            label: "AQI(ดัชนีคุณภาพอากาศเฉลี่ย)",                            
+                            borderColor: brandSuccess,
+                            data: [70,78,50,62,56],
+                          }]
+                        }}
+                        options={{
+                          legend: {
+                            display: this.props.displayLegend,
+                            position: this.props.legendPosition
+                          },
+                          scales: {
+                            yAxes: [{
+                              ticks: {
+                                beginAtZero: true,
+                                min: 0
+                              }
+                            }]
+                          }
+                        }}
+                      />
+                      <img src={AQItable} width='700' height='350' />
+                    {/* <hr className="mt-0" />
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
@@ -809,7 +854,7 @@ class Dashboard extends Component {
                         <sup className="px-1"><Badge pill color="danger">&nbsp;</Badge></sup>
                         Recurring clients
                       </small>
-                    </div>
+                    </div> */}
                   </Col>
                   <Col xs="12" md="6" xl="6">
                     <div className="chart-wrapper">
