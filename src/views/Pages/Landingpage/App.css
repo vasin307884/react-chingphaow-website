@@ -53,3 +53,10 @@ height: 50px;
 .mySidebar{
   display: none;
 }
+
+.bg{
+  background-image: url('./asset//bg1.png');
+  background-attachment: fixed;
+  background-size: cover;
+  
+}

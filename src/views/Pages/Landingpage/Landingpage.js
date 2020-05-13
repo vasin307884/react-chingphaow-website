@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import "./App.css";
 import "./css/default.css";
-import logo from "./asset/chingphaow.png";
-import alert from "./asset/alert.png";
+import logo from "./asset/chingphaow-removebg.png";
+import alert from "./asset/alert-removebg.png";
 import LOGO1 from "./asset/LOGO1.PNG";
 import logo2 from "./asset/logo2.png";
 
@@ -68,7 +68,7 @@ class Landingpage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="bg">
         {/* <!--navigation--> */}
         <nav class="navbar1 navbar1-expand-md navbar1-light bg-white fixed-top sticky-navigation">
           <a class="navbar1-brand mx-auto">
@@ -210,7 +210,7 @@ class Landingpage extends Component {
         </section>
 
         {/* <!-- about section --> */}
-        <section class="pb-7">
+        <section class="pb-4">
           <div class="container">
             <hr class="my-6" />
             <div class="row">
@@ -289,7 +289,7 @@ class Landingpage extends Component {
             <hr class="my-6" />
           </div>
         </section>
-
+                          
         {/*                
                 <!--process--> */}
         <section class="py-7" id="process">
@@ -474,7 +474,7 @@ class Landingpage extends Component {
 }
 const mapStyles = {
   width: "75%",
-  height: "100%",
+  height: "80",
 };
 
 export default GoogleApiWrapper({
