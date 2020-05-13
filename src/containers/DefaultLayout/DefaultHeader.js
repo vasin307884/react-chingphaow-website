@@ -21,6 +21,7 @@ class DefaultHeader extends Component {
       first_name: '',
       last_name: '',
       email: '',
+      role:'',
       errors: {}
     }
   }
@@ -31,7 +32,8 @@ class DefaultHeader extends Component {
     this.setState({
       first_name: decoded.first_name,
       last_name: decoded.last_name,
-      email: decoded.email
+      email: decoded.email,
+      role : decoded.role
     })
   }
   logOut(e) {
@@ -98,7 +100,7 @@ class DefaultHeader extends Component {
         <NavItem className="px-3">
             <NavLink to="/home" className="nav-link" >Home</NavLink>
           </NavItem>
-          {this.state.email==='lnwza' ? adminLink : staffLink}
+          {this.state.role==='admin' ? adminLink : staffLink}
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
