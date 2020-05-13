@@ -214,13 +214,18 @@ class Landingpage extends Component {
           <div class="container">
             <hr class="my-6" />
             <div class="row">
+            
               <div class="col-md-6 mx-auto text-center">
                 <h4 class="dot-circle font-weight-normal">
                   We intend to create websites and application in order to
                   improve the health of everyone.
                 </h4>
+                <br></br>
+                <iframe src="https://www.tmd.go.th/daily_forecast_forweb.php?strProvinceID=1-11-13-4-5-61-3" width="180" height="260" scrolling="no" frameborder="0"></iframe>
               </div>
+              
             </div>
+            
 
             {/* topic1 */}
             <div class="row mt-5" id="about">
