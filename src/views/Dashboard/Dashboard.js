@@ -28,7 +28,7 @@ import {
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
 import { number } from 'prop-types';
-
+import AQItable from './asset/aqi.JPG'
 // const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
 const brandPrimary = getStyle('--primary')
@@ -714,7 +714,7 @@ class Dashboard extends Component {
                       </Col>
                       <Col sm="6">
                         <div className="callout callout-danger">
-                          <small className="text-muted">PM2.5(ug/m^3)</small>
+                          <small className="text-muted">PM2.5(ug/m^3)เฉลี่ย</small>
                           <br />
                           <strong className="h4">33</strong>
                           <div className="chart-wrapper">
@@ -726,12 +726,11 @@ class Dashboard extends Component {
                         <div className="callout callout-success">
                           <small className="text-muted">AQI(ดัชนีคุณภาพอากาศเฉลี่ย)</small>
                           <br />
-                          <strong className="h4">75</strong>
+                          <strong className="h4">48</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(4, brandSuccess)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
-                        </div>
-                        
+                        </div>                        
                       </Col>
                     </Row>
                     <Line
@@ -768,6 +767,7 @@ class Dashboard extends Component {
                           }
                         }}
                       />
+                      <img src={AQItable} width='700' height='350' />
                     {/* <hr className="mt-0" />
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
