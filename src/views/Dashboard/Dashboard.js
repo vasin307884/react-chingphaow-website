@@ -704,9 +704,9 @@ class Dashboard extends Component {
                     <Row>
                       <Col sm="6">
                         <div className="callout callout-info">
-                          <small className="text-muted">New Clients</small>
+                          <small className="text-muted">พื้นที่ทั้งหมด</small>
                           <br />
-                          <strong className="h4">9,123</strong>
+                          <strong className="h4">{this.state.TotalArea}</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(0, brandPrimary)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
@@ -714,16 +714,61 @@ class Dashboard extends Component {
                       </Col>
                       <Col sm="6">
                         <div className="callout callout-danger">
-                          <small className="text-muted">Recurring Clients</small>
+                          <small className="text-muted">PM2.5(ug/m^3)</small>
                           <br />
-                          <strong className="h4">22,643</strong>
+                          <strong className="h4">33</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(1, brandDanger)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
+                        </div>                        
+                      </Col>
+                      <Col sm="6">
+                        <div className="callout callout-success">
+                          <small className="text-muted">AQI(ดัชนีคุณภาพอากาศเฉลี่ย)</small>
+                          <br />
+                          <strong className="h4">75</strong>
+                          <div className="chart-wrapper">
+                            <Line data={makeSparkLineData(4, brandSuccess)} options={sparklineChartOpts} width={100} height={30} />
+                          </div>
                         </div>
+                        
                       </Col>
                     </Row>
-                    <hr className="mt-0" />
+                    <Line
+                        width={60}
+                        height={20}
+                        data={{
+                          labels:['เฉลี่ย 24 ชม.','เฉลี่ย 12 ชม.','เฉลี่ย 6 ชม.','เฉลี่ย 3 ชม.','เฉลี่ย 1 ชม.'],
+                          datasets: [{
+                            label: "PM2.5(ug/m^3)",
+                            backgroundColor: [
+                              brandDanger,
+                            ],
+                            borderColor: brandDanger,
+                            data: [18,28,26,14,21],
+                          },                        
+                          {
+                            label: "AQI(ดัชนีคุณภาพอากาศเฉลี่ย)",                            
+                            borderColor: brandSuccess,
+                            data: [70,78,50,62,56],
+                          }]
+                        }}
+                        options={{
+                          legend: {
+                            display: this.props.displayLegend,
+                            position: this.props.legendPosition
+                          },
+                          scales: {
+                            yAxes: [{
+                              ticks: {
+                                beginAtZero: true,
+                                min: 0
+                              }
+                            }]
+                          }
+                        }}
+                      />
+                    {/* <hr className="mt-0" />
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
@@ -809,7 +854,7 @@ class Dashboard extends Component {
                         <sup className="px-1"><Badge pill color="danger">&nbsp;</Badge></sup>
                         Recurring clients
                       </small>
-                    </div>
+                    </div> */}
                   </Col>
                   <Col xs="12" md="6" xl="6">
                     <div className="chart-wrapper">
