@@ -1,6 +1,6 @@
 // import React, { Component, lazy, Suspense } from 'react';
 import React, { Component } from 'react';
-import { Bar, Line, Pie, } from 'react-chartjs-2';
+import { Bar, Line, Pie, Polar, Radar, } from 'react-chartjs-2';
 import axios from 'axios';
 
 import {
@@ -587,11 +587,11 @@ class Dashboard extends Component {
               <option value={this.state.statusValue} label="เชียงราย"></option>
             </select>
           </label>
-          <h2>จำนวนคำขอทั้งหมด : {this.state.dataAmount}</h2>
+          {/* <h2>จำนวนคำขอทั้งหมด : {this.state.dataAmount}</h2>
           <h2>กำลังรอเจ้าหน้าที่ตรวจสอบ : {this.state.dataStatus1}</h2>
           <h2>กำลังดำเนินการชิงเผา : {this.state.dataStatus2}</h2>
           <h2>ชิงเผาเสร็จเรียบร้อยแล้ว : {this.state.dataStatus3}</h2>
-          <h2>พื้นที่ที่เผาไปโดยประมาณ : {this.state.TotalArea} ตร.ม หรือ {this.state.TotalArea/1600} ไร่(โดยประมาณ)</h2>
+          <h2>พื้นที่ที่เผาไปโดยประมาณ : {this.state.TotalArea} ตร.ม หรือ {this.state.TotalArea/1600} ไร่(โดยประมาณ)</h2> */}
         </div>
         <Row>
           <Col xs="12" sm="6" lg="3">
@@ -619,7 +619,7 @@ class Dashboard extends Component {
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-primary">
+            <Card className="text-white bg-danger ">
               <CardBody className="pb-0">
                 <ButtonGroup className="float-right">
                   <Dropdown id='card2' isOpen={this.state.card2} toggle={() => { this.setState({ card2: !this.state.card2 }); }}>
@@ -636,8 +636,8 @@ class Dashboard extends Component {
                 <div className="text-value">{this.state.dataStatus1}</div>
                 <div>กำลังรอเจ้าหน้าที่ตรวจสอบ</div>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
-                <Line data={cardChartData1} options={cardChartOpts1} height={70} />
+              <div className="chart-wrapper" style={{ height: '70px' }}>
+                <Line data={cardChartData3} options={cardChartOpts3} height={70} />
               </div>
             </Card>
           </Col>
@@ -667,7 +667,7 @@ class Dashboard extends Component {
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-danger">
+            <Card className="text-white bg-success ">
               <CardBody className="pb-0">
                 <ButtonGroup className="float-right">
                   <Dropdown id='card4' isOpen={this.state.card4} toggle={() => { this.setState({ card4: !this.state.card4 }); }}>
@@ -696,7 +696,7 @@ class Dashboard extends Component {
           <Col>
             <Card>
               <CardHeader>
-                Traffic {' & '} Sales
+              พื้นที่ทั้งหมด
               </CardHeader>
               <CardBody>
                 <Row>
