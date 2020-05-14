@@ -97,6 +97,12 @@ class Landingpage extends Component {
                   Download
                 </a>
               </li>
+              <Link to="/404"><li class="nav-item">
+                <a class="nav-link page-scroll" href="#news">
+                  News
+                </a>
+              </li>
+              </Link>
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#process">
                   Process

@@ -55,8 +55,6 @@ height: 50px;
 }
 
 .bg{
-  background-image: url('./asset//bg1.png');
-  background-attachment: fixed;
-  background-size: cover;
+  background-color: white;
   
 }
