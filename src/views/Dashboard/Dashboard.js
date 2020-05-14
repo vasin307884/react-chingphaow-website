@@ -706,7 +706,8 @@ class Dashboard extends Component {
                         <div className="callout callout-info">
                           <small className="text-muted">พื้นที่ทั้งหมด</small>
                           <br />
-                          <strong className="h4">{this.state.TotalArea}</strong>
+                          <strong className="h4">{this.state.TotalArea} ตร.ม / </strong><br></br>
+                          <strong className="h4">{this.state.TotalArea/1600} ไร่</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(0, brandPrimary)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
@@ -767,7 +768,7 @@ class Dashboard extends Component {
                           }
                         }}
                       />
-                      <img src={AQItable} width='700' height='350' />
+                      <img src={AQItable} width='600' height='350' />
                     {/* <hr className="mt-0" />
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">

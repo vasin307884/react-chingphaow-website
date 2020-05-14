@@ -68,7 +68,7 @@ class Landingpage extends Component {
 
   render() {
     return (
-      <div className="bg">
+      <div>
         {/* <!--navigation--> */}
         <nav class="navbar1 navbar1-expand-md navbar1-light bg-white fixed-top sticky-navigation">
           <a class="navbar1-brand mx-auto">
@@ -221,7 +221,6 @@ class Landingpage extends Component {
                   improve the health of everyone.
                 </h4>
                 <br></br>
-                <iframe src="https://www.tmd.go.th/daily_forecast_forweb.php?strProvinceID=1-11-13-4-5-61-3" width="180" height="260" scrolling="no" frameborder="0"></iframe>
               </div>
               
             </div>
