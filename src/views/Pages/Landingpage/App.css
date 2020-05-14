@@ -1,0 +1,60 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+.logo{
+  height: 55px;
+}
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+  color: aquamarine;
+  background-color: black;
+}
+
+.w3-container-w3-red-w3-center{
+  padding: 128px 16px;
+}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+
+.footer{
+
+background-color: #009688;
+}
+.buttonsubmit{
+  background-color: #009688;
+color: aliceblue;
+}
+.mm,.ph,.em{
+  color: #009688;
+}
+.contact{
+height: 50px;
+  background-color: #009688;
+  padding: 10px;
+  color: aliceblue;
+}
+.cwst{
+  background-color: brown;
+}
+.CardHeader{
+ background-color: aqua;
+}
+.mySidebar{
+  display: none;
+}
+
+.bg{
+  background-color: white;
+  
+}
