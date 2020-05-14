@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { register } from '../components/UserFunctions'
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
 import jwt_decode from 'jwt-decode'
 class Register extends Component {
   constructor() {

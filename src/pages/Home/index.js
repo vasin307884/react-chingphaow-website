@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable array-callback-return */
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
@@ -121,13 +122,13 @@ export class Home extends Component {
          
         >
           <div>
-            <h2>ชื่อผู้ส่ง : {this.state.selectedPlace.name}</h2>
-            <h2>เบอร์โทร : {this.state.selectedPlace.phone}</h2>
-            <h2>ที่อยู่ : {this.state.selectedPlace.address}</h2>
-            <h2>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h2>
-            <h2 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h2>
-            <h2>เจ้าหน้าที่ที่ดูแลจุด : {this.state.selectedPlace.staff_first_name} {this.state.selectedPlace.staff_last_name}</h2>
-            <h2>อัพเดทล่าสุดเมื่อ : {this.state.selectedPlace.lastupdate}</h2>
+            <h4>ชื่อผู้ส่ง : {this.state.selectedPlace.name}</h4>
+            <h4>เบอร์โทร : {this.state.selectedPlace.phone}</h4>
+            <h4>ที่อยู่ : {this.state.selectedPlace.address}</h4>
+            <h4>วันที่ส่งมา : {this.state.selectedPlace.fromdate}</h4>
+            <h4 style={{ color: this.state.selectedPlace.pinColor }}>สถานะ : {this.state.selectedPlace.status}</h4>
+            <h4>เจ้าหน้าที่ที่ดูแลจุด : {this.state.selectedPlace.staff_first_name} {this.state.selectedPlace.staff_last_name}</h4>
+            <h4>อัพเดทล่าสุดเมื่อ : {this.state.selectedPlace.lastupdate}</h4>
             <a href={`https://www.google.com/maps?ie=UTF8&z=13&q=${this.state.selectedPlace.latitude},${this.state.selectedPlace.longitude}`} target="_blank">กดเพื่อนำทาง</a>
           </div>
         </InfoWindow>
