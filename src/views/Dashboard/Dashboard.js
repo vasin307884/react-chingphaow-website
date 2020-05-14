@@ -1,17 +1,18 @@
+/* eslint-disable jsx-a11y/alt-text */
 // import React, { Component, lazy, Suspense } from 'react';
 import React, { Component } from 'react';
-import { Bar, Line, Pie, Polar, Radar, } from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 import axios from 'axios';
 
 import {
-  Badge,
+  // Badge,
   Button,
   // ButtonDropdown,
   ButtonGroup,
   ButtonToolbar,
   Card,
   CardBody,
-  CardFooter,
+  // CardFooter,
   CardHeader,
   CardTitle,
   Col,
@@ -19,15 +20,15 @@ import {
   // DropdownItem,
   // DropdownMenu,
   DropdownToggle,
-  Progress,
+  // Progress,
   Row,
-  Container,
+  // Container,
 
   // Table,
 } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
-import { number } from 'prop-types';
+import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities'
+// import { number } from 'prop-types';
 import AQItable from './asset/aqi.JPG'
 // const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -38,82 +39,82 @@ const brandInfo = getStyle('--info')
 const brandDanger = getStyle('--danger')
 
 // Card Chart 1
-const cardChartData1 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      backgroundColor: brandPrimary,
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [65, 59, 84, 84, 51, 55, 40],
-    },
-  ],
-};
-const pie = {
-  labels: [
-    'Red',
-    'Green',
-    'Yellow',
-  ],
-  datasets: [
-    {
-      data: [300, 50, 100],
-      backgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-      ],
-      hoverBackgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-      ],
-    }],
-};
+// const cardChartData1 = {
+//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//   datasets: [
+//     {
+//       label: 'My First dataset',
+//       backgroundColor: brandPrimary,
+//       borderColor: 'rgba(255,255,255,.55)',
+//       data: [65, 59, 84, 84, 51, 55, 40],
+//     },
+//   ],
+// };
+// const pie = {
+//   labels: [
+//     'Red',
+//     'Green',
+//     'Yellow',
+//   ],
+//   datasets: [
+//     {
+//       data: [300, 50, 100],
+//       backgroundColor: [
+//         '#FF6384',
+//         '#36A2EB',
+//         '#FFCE56',
+//       ],
+//       hoverBackgroundColor: [
+//         '#FF6384',
+//         '#36A2EB',
+//         '#FFCE56',
+//       ],
+//     }],
+// };
 
-const cardChartOpts1 = {
-  tooltips: {
-    enabled: false,
-    custom: CustomTooltips
-  },
-  maintainAspectRatio: false,
-  legend: {
-    display: false,
-  },
-  scales: {
-    xAxes: [
-      {
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent',
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        },
+// const cardChartOpts1 = {
+//   tooltips: {
+//     enabled: false,
+//     custom: CustomTooltips
+//   },
+//   maintainAspectRatio: false,
+//   legend: {
+//     display: false,
+//   },
+//   scales: {
+//     xAxes: [
+//       {
+//         gridLines: {
+//           color: 'transparent',
+//           zeroLineColor: 'transparent',
+//         },
+//         ticks: {
+//           fontSize: 2,
+//           fontColor: 'transparent',
+//         },
 
-      }],
-    yAxes: [
-      {
-        display: false,
-        ticks: {
-          display: false,
-          min: Math.min.apply(Math, cardChartData1.datasets[0].data) - 5,
-          max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5,
-        },
-      }],
-  },
-  elements: {
-    line: {
-      borderWidth: 1,
-    },
-    point: {
-      radius: 4,
-      hitRadius: 10,
-      hoverRadius: 4,
-    },
-  }
-}
+//       }],
+//     yAxes: [
+//       {
+//         display: false,
+//         ticks: {
+//           display: false,
+//           min: Math.min.apply(Math, cardChartData1.datasets[0].data) - 5,
+//           max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5,
+//         },
+//       }],
+//   },
+//   elements: {
+//     line: {
+//       borderWidth: 1,
+//     },
+//     point: {
+//       radius: 4,
+//       hitRadius: 10,
+//       hoverRadius: 4,
+//     },
+//   }
+// }
 
 
 // Card Chart 2
@@ -128,27 +129,27 @@ const cardChartData2 = {
     },
   ],
 };
-const bar = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,99,132,0.2)',
-      borderColor: 'rgba(255,99,132,1)',
-      borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-      hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40, 50],
-    },
-  ],
-};
-const options = {
-  tooltips: {
-    enabled: false,
-    custom: CustomTooltips
-  },
-  maintainAspectRatio: false
-}
+// const bar = {
+//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//   datasets: [
+//     {
+//       label: 'My First dataset',
+//       backgroundColor: 'rgba(255,99,132,0.2)',
+//       borderColor: 'rgba(255,99,132,1)',
+//       borderWidth: 1,
+//       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+//       hoverBorderColor: 'rgba(255,99,132,1)',
+//       data: [65, 59, 80, 81, 56, 55, 40, 50],
+//     },
+//   ],
+// };
+// const options = {
+//   tooltips: {
+//     enabled: false,
+//     custom: CustomTooltips
+//   },
+//   maintainAspectRatio: false
+// }
 
 const cardChartOpts2 = {
   tooltips: {
@@ -425,80 +426,80 @@ for (var i = 0; i <= elements; i++) {
   data3.push(65);
 }
 
-const mainChart = {
-  labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      backgroundColor: hexToRgba(brandInfo, 10),
-      borderColor: brandInfo,
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: data1,
-    },
-    {
-      label: 'My Second dataset',
-      backgroundColor: 'transparent',
-      borderColor: brandSuccess,
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: data2,
-    },
-    {
-      label: 'My Third dataset',
-      backgroundColor: 'transparent',
-      borderColor: brandDanger,
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 1,
-      borderDash: [8, 5],
-      data: data3,
-    },
-  ],
-};
+// const mainChart = {
+//   labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+//   datasets: [
+//     {
+//       label: 'My First dataset',
+//       backgroundColor: hexToRgba(brandInfo, 10),
+//       borderColor: brandInfo,
+//       pointHoverBackgroundColor: '#fff',
+//       borderWidth: 2,
+//       data: data1,
+//     },
+//     {
+//       label: 'My Second dataset',
+//       backgroundColor: 'transparent',
+//       borderColor: brandSuccess,
+//       pointHoverBackgroundColor: '#fff',
+//       borderWidth: 2,
+//       data: data2,
+//     },
+//     {
+//       label: 'My Third dataset',
+//       backgroundColor: 'transparent',
+//       borderColor: brandDanger,
+//       pointHoverBackgroundColor: '#fff',
+//       borderWidth: 1,
+//       borderDash: [8, 5],
+//       data: data3,
+//     },
+//   ],
+// };
 
-const mainChartOpts = {
-  tooltips: {
-    enabled: false,
-    custom: CustomTooltips,
-    intersect: true,
-    mode: 'index',
-    position: 'nearest',
-    callbacks: {
-      labelColor: function (tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
-      }
-    }
-  },
-  maintainAspectRatio: false,
-  legend: {
-    display: false,
-  },
-  scales: {
-    xAxes: [
-      {
-        gridLines: {
-          drawOnChartArea: false,
-        },
-      }],
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-          maxTicksLimit: 5,
-          stepSize: Math.ceil(250 / 5),
-          max: 250,
-        },
-      }],
-  },
-  elements: {
-    point: {
-      radius: 0,
-      hitRadius: 10,
-      hoverRadius: 4,
-      hoverBorderWidth: 3,
-    },
-  },
-};
+// const mainChartOpts = {
+//   tooltips: {
+//     enabled: false,
+//     custom: CustomTooltips,
+//     intersect: true,
+//     mode: 'index',
+//     position: 'nearest',
+//     callbacks: {
+//       labelColor: function (tooltipItem, chart) {
+//         return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
+//       }
+//     }
+//   },
+//   maintainAspectRatio: false,
+//   legend: {
+//     display: false,
+//   },
+//   scales: {
+//     xAxes: [
+//       {
+//         gridLines: {
+//           drawOnChartArea: false,
+//         },
+//       }],
+//     yAxes: [
+//       {
+//         ticks: {
+//           beginAtZero: true,
+//           maxTicksLimit: 5,
+//           stepSize: Math.ceil(250 / 5),
+//           max: 250,
+//         },
+//       }],
+//   },
+//   elements: {
+//     point: {
+//       radius: 0,
+//       hitRadius: 10,
+//       hoverRadius: 4,
+//       hoverBorderWidth: 3,
+//     },
+//   },
+// };
 
 class Dashboard extends Component {
   static defaultProps = {
@@ -537,9 +538,9 @@ class Dashboard extends Component {
       .get("https://chingphaow-application.herokuapp.com/requests/")
       .then((response) => {
         const getAmount = response.data.data.length;
-        const ArrayDataStatus1 = response.data.data.filter((item) => item.statusValue == "กำลังรอเจ้าหน้าที่ตรวจสอบ").length;
-        const ArrayDataStatus2 = response.data.data.filter((item) => item.statusValue == "กำลังดำเนินการชิงเผา").length;
-        const ArrayDataStatus3 = response.data.data.filter((item) => item.statusValue == "ชิงเผาเสร็จเรียบร้อยแล้ว").length;
+        const ArrayDataStatus1 = response.data.data.filter((item) => item.statusValue === "กำลังรอเจ้าหน้าที่ตรวจสอบ").length;
+        const ArrayDataStatus2 = response.data.data.filter((item) => item.statusValue === "กำลังดำเนินการชิงเผา").length;
+        const ArrayDataStatus3 = response.data.data.filter((item) => item.statusValue === "ชิงเผาเสร็จเรียบร้อยแล้ว").length;
         const ArrayArea = response.data.data.map((item) => item.area);
         const ArrayDate = response.data.data.map((item) => item.lastupdate);
         this.setState({

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // import { Button, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import '../Landingpage/css/default.css'
 import { Link } from 'react-router-dom';
-import logo from '../Landingpage/asset/chingphaow-removebg.png'
-import cover1 from './asset/cover1.png'
-import cover2 from './asset/cover2.png'
+// import logo from '../Landingpage/asset/chingphaow-removebg.png'
+// import cover1 from './asset/cover1.png'
+// import cover2 from './asset/cover2.png'
 class Page404 extends Component {
   render() {
     return (
@@ -22,7 +22,7 @@ class Page404 extends Component {
 <div class="w3-col l8 s12">
 {/* <!-- Blog entry --> */}
   <div class="w3-card-4 w3-margin w3-white">
-  <img src={cover1} class="logo" alt="logo" width="100%" />
+  <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/096e4afaf6c73851cf23a96d7cdd1595.png" alt="cover1" width="100%" />
     <div class="w3-container">
       <h3><b>ชิงเผาคืออะไร?</b></h3>
       <h5> <span class="w3-opacity">May 14, 2020</span></h5>
@@ -41,7 +41,7 @@ class Page404 extends Component {
   </div>
   {/* <!-- Blog entry --> */}
   <div class="w3-card-4 w3-margin w3-white">
-  <img src={cover2} class="logo" alt="logo" width="100%" />
+  <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/16766f5d9191b91d0e1b6c9e82b4b644.png" alt="cover2" width="100%" />
     <div class="w3-container">
       <h3><b>ข้อควรคำนึงในการชิงเผา</b></h3>
       <h5>Title description, <span class="w3-opacity">April 7, 2014</span></h5>
@@ -67,7 +67,7 @@ class Page404 extends Component {
 <div class="w3-col l4">
 {/* <!-- About Card -->  */}
   <div class="w3-card w3-margin w3-margin-top">
-  <img src={logo} class="logo" alt="logo" width="100%" />
+  <img src="https://s3-ap-southeast-1.amazonaws.com/img-in-th/c40e238fa64ff71a245fa37c05522c16.png" alt="logo" width="100%" />
     <div class="w3-container w3-white">
       <h4><b>ที่มาของชิงเผา</b></h4>
       <p>วัตถุประสงค์ของโครงการนี้เพื่อลดการเกิดไฟป่าปัญหามลภาวะและจัดการตารางการเผาไหม้ของชาวบ้าน ดังนั้นจึงมีกระบวนการควบคุมการเผาไหม้ที่เรียกว่า“ชิงเผา”</p>
