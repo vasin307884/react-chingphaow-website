@@ -9,6 +9,7 @@ export default class Request extends Component {
     super(props);
     this.state = {
       email: '',
+      role:'',
       requestsdata: [],
       loading: false,
       error: null
@@ -33,7 +34,8 @@ export default class Request extends Component {
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
     this.setState({
-      email: decoded.email
+      email: decoded.email,
+      role:decoded.role
     })
   }
   updateFilter = (event) => {
@@ -52,9 +54,6 @@ export default class Request extends Component {
    }
  }
   render() {
-    const adminLink = (
-      <Button color='danger' onClick={()=>this.deleteData()}>ลบออกจากลิสต์</Button>
-    )
     return (
       <div className="animated fadeIn">
               <label>
@@ -80,8 +79,7 @@ export default class Request extends Component {
               <th>ชื่อผู้ส่ง</th>
               <th>ที่อยู่</th>
               <th>เบอร์โทร</th>
-              <th>ละติจูด</th>
-              <th>ลองจิจูด</th>
+              <th>(ละติจูด,ลองจิจูด)</th>
               <th>วันที่ส่งมา</th>
               <th>วันที่เริ่ม</th>
               <th>อัพเดทล่าสุดเมื่อ</th>
@@ -91,6 +89,9 @@ export default class Request extends Component {
             </tr>
           </thead>
           {this.state.requestsdata.map((requestsdata) => {
+            const adminLink = (
+              <Button color='danger' onClick={()=>this.deleteData(requestsdata.id)}>ลบออกจากลิสต์</Button>
+            )
           if ( !this.state.value || requestsdata.statusValue === this.state.value ) {
           return (
             <tbody>
@@ -99,8 +100,7 @@ export default class Request extends Component {
                 <td>{requestsdata.name}</td>
                 <td>{requestsdata.address}</td>
                 <td>{requestsdata.phone}</td>
-                <td>{requestsdata.latitude}</td>
-                <td>{requestsdata.longitude}</td>
+                <td>{requestsdata.latitude},{requestsdata.longitude}</td>
                 <td>{requestsdata.fromdate}</td>
                 <td>{requestsdata.todate}</td>
                 <td>{requestsdata.lastupdate}</td>
@@ -109,7 +109,7 @@ export default class Request extends Component {
                   {requestsdata.statusValue}
                 </Badge>
                 <td>{requestsdata.first_name} {requestsdata.last_name}</td>
-                {this.state.email==='lnwza' ? adminLink : null}
+                {this.state.role==='admin' ? adminLink : null}
               </tr>
             </tbody>
           )

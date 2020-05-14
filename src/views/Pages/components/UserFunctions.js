@@ -3,6 +3,7 @@ import axios from 'axios'
 export const register = newUser => {
   return axios
     .post("https://chingphaow-application.herokuapp.com/users/register", {
+      role:newUser.role,
       first_name: newUser.first_name,
       last_name: newUser.last_name,
       staff_phone : newUser.staff_phone,
