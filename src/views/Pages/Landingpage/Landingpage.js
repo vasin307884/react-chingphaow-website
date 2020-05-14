@@ -109,11 +109,11 @@ class Landingpage extends Component {
                   Process
                 </a>
               </li>
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <a class="nav-link page-scroll" href="#contact">
                   Contact
                 </a>
-              </li>
+              </li> */}
             </ul>
             <form class="form-inline">
               <Link to="/login">
@@ -242,12 +242,13 @@ class Landingpage extends Component {
                   ความรุนแรงแลอันตรายของไฟนั้น (Fire Hazard) จะมีน้อยลง
                   สามารถควบคุมไฟได้ง่ายและปลอดภัย
                 </p>
-                <a
-                  href="http://www.dnp.go.th/forestfire/FIRESCIENCE/lesson%204/lesson4_3.htm"
+               <Link to="/404"> <a
+                  href=""
                   class="btn1 btn1-primary"
                 >
-                  Read more
+                 อ่านต่อ
                 </a>
+                </Link>
               </div>
               <div class="col-md-6 order-1 order-md-2">
                 <img
@@ -282,12 +283,13 @@ class Landingpage extends Component {
                   โดยช่วงเวลาที่เหมาะสมสำหรับการชิงเผาอยู่ระหว่าง 2.00 น. ถึง
                   5.00 น.
                 </p>
-                <a
-                  href="http://www.dnp.go.th/forestfire/FIRESCIENCE/lesson%204/lesson4_3.htm"
+                <Link to="/404">  <a
+                  href=""
                   class="btn1 btn1-primary"
                 >
-                  Read more
+                  อ่านต่อ
                 </a>
+                </Link>
               </div>
             </div>
             <hr class="my-4" />
@@ -413,7 +415,7 @@ class Landingpage extends Component {
         </section>
 
         <div class="container" id="contact">
-          <div class=" w3-container " id="contact">
+          {/* <div class=" w3-container " id="contact">
             <h3 class="contact w3-center w3-margin">ติดต่อเรา</h3>
             <p class="w3-center w3-large">ส่งข้อความมติดต่อมาหาเราได้ที่:</p>
             <div>
@@ -476,21 +478,21 @@ class Landingpage extends Component {
                 </p>
               </form>
             </div>
-          </div>
+          </div> */}
         </div>
         <br></br>
         <footer class="footer w3-center w3-padding-64">
           <a href="#homepage" class="w3-button w3-light-grey">
             <i class="fa fa-arrow-up w3-margin-right"></i>กลับไปข้างบน
           </a>
-          <div class="w3-xlarge w3-section">
+          {/* <div class="w3-xlarge w3-section">
             <i class="fa fa-facebook-official w3-hover-opacity"></i>
             <i class="fa fa-instagram w3-hover-opacity"></i>
             <i class="fa fa-snapchat w3-hover-opacity"></i>
             <i class="fa fa-pinterest-p w3-hover-opacity"></i>
             <i class="fa fa-twitter w3-hover-opacity"></i>
             <i class="fa fa-linkedin w3-hover-opacity"></i>
-          </div>
+          </div> */}
           <p>Powered by MFUSE</p>
         </footer>
       </div>
