@@ -97,22 +97,23 @@ class Landingpage extends Component {
                   Download
                 </a>
               </li>
-              <Link to="/404"><li class="nav-item">
-                <a class="nav-link page-scroll" href="#news">
-                  News
-                </a>
-              </li>
+              <Link to="/404">
+                <li class="nav-item">
+                  <a class="nav-link page-scroll" href="#news">
+                    News
+                  </a>
+                </li>
               </Link>
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#process">
                   Process
                 </a>
               </li>
-              {/* <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link page-scroll" href="#contact">
                   Contact
                 </a>
-              </li> */}
+              </li>
             </ul>
             <form class="form-inline">
               <Link to="/login">
@@ -135,8 +136,8 @@ class Landingpage extends Component {
                   Chiang-Rai.
                 </h1>
                 <p class="lead mt-4 mb-5">
-                ในภาคเหนือของ <b>ประเทศ</b> 
-ในภาคเหนือของประเทศไทยมีภูเขาป่าไม้และสวนของชาวบ้านซึ่งมักทำให้เกิดไฟป่าในช่วงฤดูแล้ง
+                  ในภาคเหนือของ <b>ประเทศ</b>
+                  ในภาคเหนือของประเทศไทยมีภูเขาป่าไม้และสวนของชาวบ้านซึ่งมักทำให้เกิดไฟป่าในช่วงฤดูแล้ง
                 </p>
               </div>
               <div className="container">
@@ -220,7 +221,6 @@ class Landingpage extends Component {
           <div class="container">
             <hr class="my-6" />
             <div class="row">
-            
               <div class="col-md-6 mx-auto text-center">
                 <h4 class="dot-circle font-weight-normal">
                   We intend to create websites and application in order to
@@ -228,21 +228,26 @@ class Landingpage extends Component {
                 </h4>
                 <br></br>
               </div>
-              
             </div>
-            
 
             {/* topic1 */}
             <div class="row mt-5" id="about">
               <div class="col-md-6 order-2 order-md-1 my-md-auto">
                 <h3>ชิงเผา คืออะไร ???</h3>
                 <p class="text-muted lead">
-                การชิงเผาเป็นวิธีการหนึ่งของการเผาตามกำหนด (Prescribe Burning) อันเป็นการใช้ประโยชน์จากไฟเพื่อการจัดการป่าไม้ การชิงเผามีวัตถุประสงค์หลัก เพื่อลดปริมาณเชื้อเพลิงในป่าลง ทั้งนี้เพื่อเป็นการลดโอกาสในการเกิดไฟป่า หรือถ้าเกิดไฟป่าขึ้น ความรุนแรงแลอันตรายของไฟนั้น (Fire Hazard) จะมีน้อยลง สามารถควบคุมไฟได้ง่ายและปลอดภัย
+                  การชิงเผาเป็นวิธีการหนึ่งของการเผาตามกำหนด (Prescribe Burning)
+                  อันเป็นการใช้ประโยชน์จากไฟเพื่อการจัดการป่าไม้
+                  การชิงเผามีวัตถุประสงค์หลัก เพื่อลดปริมาณเชื้อเพลิงในป่าลง
+                  ทั้งนี้เพื่อเป็นการลดโอกาสในการเกิดไฟป่า หรือถ้าเกิดไฟป่าขึ้น
+                  ความรุนแรงแลอันตรายของไฟนั้น (Fire Hazard) จะมีน้อยลง
+                  สามารถควบคุมไฟได้ง่ายและปลอดภัย
                 </p>
-               <Link to="/404"><a href="" class="btn1 btn1-primary text-black">
-                  อ่านต่อ
+                <a
+                  href="http://www.dnp.go.th/forestfire/FIRESCIENCE/lesson%204/lesson4_3.htm"
+                  class="btn1 btn1-primary"
+                >
+                  Read more
                 </a>
-                </Link>
               </div>
               <div class="col-md-6 order-1 order-md-2">
                 <img
@@ -266,15 +271,23 @@ class Landingpage extends Component {
               <div class="col-md-6 my-md-auto">
                 <h3>ข้อควรคำนึงในการชิงเผา </h3>
                 <p class="text-muted lead">
-                ต้องทำแนวกันไฟรอบพื้นที่ที่จะชิงเผาเสียก่อน เพื่อป้องกันไม่ให้ไฟลุกลามออกไปนอกพื้นที่ชิงเผา โดยอาจอาศัยแนวที่มีอยู่แล้ว เช่น ลำห้วย หรือถนน และต้องมีเจ้าหน้าที่พร้อมเครื่องมือดับไฟป่าคอยควบคุมไม่ให้ไฟลามออกนอกพื้นที่
+                  ต้องทำแนวกันไฟรอบพื้นที่ที่จะชิงเผาเสียก่อน
+                  เพื่อป้องกันไม่ให้ไฟลุกลามออกไปนอกพื้นที่ชิงเผา
+                  โดยอาจอาศัยแนวที่มีอยู่แล้ว เช่น ลำห้วย หรือถนน
+                  และต้องมีเจ้าหน้าที่พร้อมเครื่องมือดับไฟป่าคอยควบคุมไม่ให้ไฟลามออกนอกพื้นที่
                 </p>
                 <p class="text-muted lead">
-                ทำการชิงเผาในช่วงเวลาที่ลมค่อนข้างสงบ อากาศไม่ร้อนจัด และความชื้นสัมพัทธ์ของอากาศค่อนข้างสูง โดยช่วงเวลาที่เหมาะสมสำหรับการชิงเผาอยู่ระหว่าง 2.00 น. ถึง 5.00 น.
+                  ทำการชิงเผาในช่วงเวลาที่ลมค่อนข้างสงบ อากาศไม่ร้อนจัด
+                  และความชื้นสัมพัทธ์ของอากาศค่อนข้างสูง
+                  โดยช่วงเวลาที่เหมาะสมสำหรับการชิงเผาอยู่ระหว่าง 2.00 น. ถึง
+                  5.00 น.
                 </p>
-                <Link to="/404"><a href="" class="btn1 btn1-primary">
-                  อ่านต่อ
+                <a
+                  href="http://www.dnp.go.th/forestfire/FIRESCIENCE/lesson%204/lesson4_3.htm"
+                  class="btn1 btn1-primary"
+                >
+                  Read more
                 </a>
-                </Link>
               </div>
             </div>
             <hr class="my-4" />
@@ -285,9 +298,9 @@ class Landingpage extends Component {
                 <p class="text-muted lead">
                   ชิงเผาเป็นแอปพลิเคชั่นที่ทำงานผสานกันระหว่างเว็ปไซต์และแอปพลิเคชั่นบนมือถือ
                 </p>
-                
+
                 <a href="#" class="btn1 btn1-primary">
-                 ดาวน์โหลด
+                  ดาวน์โหลด
                 </a>
               </div>
               <div class="col-md-6 order-1 order-md-2">
@@ -301,7 +314,7 @@ class Landingpage extends Component {
             <hr class="my-6" />
           </div>
         </section>
-                          
+
         {/*                
                 <!--process--> */}
         <section class="py-7" id="process">
@@ -325,7 +338,8 @@ class Landingpage extends Component {
                   <div class="media-body">
                     <h5>รับตำแหน่งที่ตั้งของคุณ</h5>
                     <p class="text-muted">
-                     เมื่อคุณส่งตำแหน่งที่ตั่งมาให้เราผ่านทางแอปพลิเคชั่นของเรา ระบบจะทำการบันทึกข้อมูลที่คุณส่งมาทั้งหมด
+                      เมื่อคุณส่งตำแหน่งที่ตั่งมาให้เราผ่านทางแอปพลิเคชั่นของเรา
+                      ระบบจะทำการบันทึกข้อมูลที่คุณส่งมาทั้งหมด
                     </p>
                   </div>
                 </div>
@@ -338,7 +352,8 @@ class Landingpage extends Component {
                   <div class="media-body">
                     <h5>ระบบทำการวิเคราห์ข้อมูล</h5>
                     <p class="text-muted">
-                     ระบบของเราจะทำการวิเคราห์ข้อมูลของคุณกับอุณหภูมิ, สภาพอากาศ, ความชื้น เพื่อหาวันเวลาที่เหมาะสมในการเผา
+                      ระบบของเราจะทำการวิเคราห์ข้อมูลของคุณกับอุณหภูมิ,
+                      สภาพอากาศ, ความชื้น เพื่อหาวันเวลาที่เหมาะสมในการเผา
                     </p>
                   </div>
                 </div>
@@ -398,11 +413,9 @@ class Landingpage extends Component {
         </section>
 
         <div class="container" id="contact">
-          {/* <div class=" w3-container " id="contact">
+          <div class=" w3-container " id="contact">
             <h3 class="contact w3-center w3-margin">ติดต่อเรา</h3>
-            <p class="w3-center w3-large">
-              ส่งข้อความมติดต่อมาหาเราได้ที่:
-            </p>
+            <p class="w3-center w3-large">ส่งข้อความมติดต่อมาหาเราได้ที่:</p>
             <div>
               <p>
                 <i class="mm fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>{" "}
@@ -463,21 +476,21 @@ class Landingpage extends Component {
                 </p>
               </form>
             </div>
-          </div> */}
+          </div>
         </div>
         <br></br>
         <footer class="footer w3-center w3-padding-64">
           <a href="#homepage" class="w3-button w3-light-grey">
             <i class="fa fa-arrow-up w3-margin-right"></i>กลับไปข้างบน
           </a>
-          {/* <div class="w3-xlarge w3-section">
+          <div class="w3-xlarge w3-section">
             <i class="fa fa-facebook-official w3-hover-opacity"></i>
             <i class="fa fa-instagram w3-hover-opacity"></i>
             <i class="fa fa-snapchat w3-hover-opacity"></i>
             <i class="fa fa-pinterest-p w3-hover-opacity"></i>
             <i class="fa fa-twitter w3-hover-opacity"></i>
             <i class="fa fa-linkedin w3-hover-opacity"></i>
-          </div> */}
+          </div>
           <p>Powered by MFUSE</p>
         </footer>
       </div>
